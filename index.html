@@ -2160,30 +2160,30 @@ async function claude(messages,system,search=false){
 const CARD_COLORS=['linear-gradient(135deg,#120026,#200040)','linear-gradient(135deg,#0a1a30,#0a2a50)','linear-gradient(135deg,#1a0a0a,#3a1010)','linear-gradient(135deg,#001a10,#002820)','linear-gradient(135deg,#1a1000,#2a1a00)'];
 const TAG_COLORS=['var(--arc)','var(--gold-d)','var(--cr)','#1a5a30','#3a2500'];
 
-async function loadNews(){
-  const btn=document.getElementById('ai-ref'),status=document.getElementById('ai-status');
-  btn.disabled=true;
-  status.innerHTML='<span class="lr"></span>Durchsuche das Web nach aktuellen WoW Midnight News…';
-  showSkeleton();
-  try{
-    const raw=await claude(
-      [{role:'user',content:'Suche nach den 5 neuesten World of Warcraft Midnight News von April/Mai 2026. Gib NUR ein JSON-Objekt zurück mit "articles": Array von {title (deutsch, max 80 Zeichen), summary (deutsch, 2-3 Sätze präzise), category (Patch/Raid/Klassen/M+/PvP/Event/Meta/Housing), date (z.B. "22. April 2026"), emoji}. Kein Markdown, keine Backticks, nur reines JSON.'}],
-      'Du bist WoW-Nachrichtenredakteur. Nutze Web Search. Antworte NUR mit reinem JSON-Objekt, kein Markdown, kein erklärender Text.',
-      true
-    );
-    let arts;
-    try{const c=raw.replace(/```json|```/g,'').trim();arts=JSON.parse(c).articles||JSON.parse(c);}
-    catch{throw new Error('parse');}
-    if(!Array.isArray(arts)||!arts.length) throw new Error('empty');
-    renderNews(arts);
-    status.textContent=`✓ ${arts.length} aktuelle News geladen · ${new Date().toLocaleTimeString('de-DE')} Uhr`;
-    btn.disabled=false;
-  }catch(e){
-    status.textContent='⚠ Web-Fehler – zeige kuratierte News';
-    btn.disabled=false;
+async async function loadNews() {
+  const btn = document.getElementById('ai-ref');
+  const status = document.getElementById('ai-status');
+  status.textContent = 'Lade aktuelle News…';
+
+  try {
+    // Liest die täglich aktualisierte news.json
+    const res = await fetch('./news.json?t=' + Date.now());
+    if (!res.ok) throw new Error('news.json nicht gefunden');
+
+    const data = await res.json();
+    renderNews(data.articles);
+
+    status.textContent = `✓ Zuletzt aktualisiert: ${data.updated || 'Heute'}`;
+    btn.disabled = false;
+
+  } catch(e) {
+    console.error(e);
+    status.textContent = '⚠ Fallback-News werden angezeigt';
+    btn.disabled = false;
     renderNews(STATIC_NEWS);
   }
 }
+
 
 function showSkeleton(){
   document.getElementById('news-grid').innerHTML=`
