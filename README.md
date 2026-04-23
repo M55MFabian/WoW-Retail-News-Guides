@@ -1,2 +1,2 @@
-# WoW-Retail-News-Guides
+index.html
 WoW Retail News und Guides
