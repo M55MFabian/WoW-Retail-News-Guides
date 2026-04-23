@@ -1,0 +1,2251 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Azeroth Chronicle – WoW Midnight News & Guides</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@400;600;700&family=Nunito+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --gold:#c9a84c;--gold-l:#f0d080;--gold-d:#7a5e20;
+      --cr:#b02030;--arc:#8b45ff;--arc-g:#b080ff;
+      --deep:#03010c;--s1:#0b0718;--s2:#110b20;--s3:#18102e;
+      --tx:#e8dfc8;--txm:#7a6e5a;
+      --bd:rgba(201,168,76,.15);--bd2:rgba(139,69,255,.2);
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{background:var(--deep);color:var(--tx);font-family:'Nunito Sans',sans-serif;overflow-x:hidden}
+    #bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(ellipse at 50% 0%,#180830 0%,#03010c 60%)}
+    .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;
+      background:radial-gradient(ellipse 90% 35% at 15% 5%,rgba(139,69,255,.14) 0%,transparent 55%),
+        radial-gradient(ellipse 70% 25% at 85% 3%,rgba(176,32,48,.1) 0%,transparent 50%),
+        radial-gradient(ellipse 55% 18% at 50% 0%,rgba(201,168,76,.06) 0%,transparent 45%);
+      animation:aur 14s ease-in-out infinite alternate}
+    @keyframes aur{from{opacity:.75}to{opacity:1;transform:scaleX(1.06)}}
+    .star{position:absolute;border-radius:50%;background:#fff;opacity:0;animation:tw var(--d,4s) var(--dl,0s) infinite}
+    @keyframes tw{0%,100%{opacity:0;transform:scale(.5)}50%{opacity:var(--op,.6);transform:scale(1)}}
+    nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(3,1,12,.9);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd)}
+    .nav-i{max-width:1300px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:66px}
+    .logo{display:flex;align-items:center;gap:.7rem;text-decoration:none}
+    .lhex{width:36px;height:36px;background:linear-gradient(135deg,var(--gold),var(--cr));clip-path:polygon(50% 0%,95% 25%,95% 75%,50% 100%,5% 75%,5% 25%);display:flex;align-items:center;justify-content:center;font-size:.9rem;box-shadow:0 0 20px rgba(201,168,76,.5);animation:hp 3s ease-in-out infinite}
+    @keyframes hp{0%,100%{box-shadow:0 0 20px rgba(201,168,76,.5)}50%{box-shadow:0 0 35px rgba(201,168,76,.9),0 0 60px rgba(139,69,255,.3)}}
+    .lname{font-family:'Cinzel',serif;font-size:1.15rem;font-weight:700;color:var(--gold-l);letter-spacing:.06em}
+    .ltag{display:block;font-family:'Cinzel',serif;font-size:.58rem;color:var(--txm);letter-spacing:.2em}
+    .nav-links{display:flex;gap:.1rem;list-style:none}
+    .nav-links a{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.1em;color:var(--txm);text-decoration:none;padding:.45rem .9rem;border-radius:3px;transition:all .2s;position:relative}
+    .nav-links a::after{content:'';position:absolute;bottom:1px;left:50%;right:50%;height:1px;background:var(--gold);transition:all .25s}
+    .nav-links a:hover{color:var(--gold-l)}.nav-links a:hover::after{left:10%;right:10%}
+    .npill{background:linear-gradient(135deg,rgba(139,69,255,.35),rgba(176,32,48,.35));color:#d0a0ff;font-size:.58rem;padding:.12rem .45rem;border-radius:20px;font-weight:700;letter-spacing:.05em;margin-left:.3rem;vertical-align:middle;border:1px solid rgba(139,69,255,.4);animation:pb 2.5s ease-in-out infinite}
+    @keyframes pb{0%,100%{opacity:1}50%{opacity:.6}}
+    .btn-p{background:linear-gradient(135deg,var(--gold-d),var(--gold));color:var(--deep);font-family:'Cinzel',serif;font-size:.76rem;font-weight:700;letter-spacing:.1em;padding:.65rem 1.6rem;border-radius:3px;border:none;cursor:pointer;text-decoration:none;transition:all .25s;box-shadow:0 4px 20px rgba(201,168,76,.3)}
+    .btn-p:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(201,168,76,.5)}
+    .btn-g{background:transparent;color:var(--tx);font-family:'Cinzel',serif;font-size:.76rem;font-weight:600;letter-spacing:.1em;padding:.65rem 1.6rem;border-radius:3px;border:1px solid var(--bd);cursor:pointer;text-decoration:none;transition:all .25s}
+    .btn-g:hover{border-color:var(--gold);color:var(--gold-l);transform:translateY(-2px)}
+    .ticker{background:linear-gradient(90deg,#7a0015,#3a0008,#7a0015);border-top:1px solid rgba(255,255,255,.07);border-bottom:1px solid rgba(255,255,255,.07);padding:.5rem 0;overflow:hidden;position:relative;z-index:2}
+    .tick-w{display:flex;align-items:center;gap:2.5rem;white-space:nowrap;width:max-content;animation:tick 55s linear infinite}
+    @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    .ti{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.07em;color:rgba(255,255,255,.88)}
+    .ts{color:rgba(255,255,255,.25)}
+    .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:8rem 2rem 5rem;position:relative;z-index:1}
+    .h-eye{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.38em;color:var(--arc-g);text-transform:uppercase;margin-bottom:1.5rem;animation:fsu .8s .2s both}
+    .h-eye::before{content:'— ';color:var(--gold-d);letter-spacing:.1em}.h-eye::after{content:' —';color:var(--gold-d)}
+    .h-title{font-family:'Cinzel Decorative',serif;font-size:clamp(2.8rem,7vw,5.8rem);font-weight:900;line-height:1.05;background:linear-gradient(135deg,#f0d080 0%,#c9a84c 35%,#9b55ff 65%,#f0d080 100%);background-size:200% 200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:fsu .8s .4s both,gs 7s ease-in-out infinite;filter:drop-shadow(0 0 50px rgba(201,168,76,.25))}
+    @keyframes gs{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+    .h-sub{font-family:'Cinzel',serif;font-size:clamp(.9rem,2.2vw,1.35rem);font-weight:700;color:var(--cr);letter-spacing:.22em;margin-top:.4rem;text-transform:uppercase;animation:fsu .8s .6s both}
+    .h-live{display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;background:rgba(139,69,255,.12);border:1px solid rgba(139,69,255,.3);border-radius:4px;padding:.4rem 1rem;font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--arc-g);animation:fsu .8s .7s both}
+    .ld{width:7px;height:7px;border-radius:50%;background:#4ade80;animation:lp 1.5s ease-in-out infinite}
+    @keyframes lp{0%,100%{opacity:1;box-shadow:0 0 4px #4ade80}50%{opacity:.5;box-shadow:0 0 10px #4ade80}}
+    .h-desc{max-width:540px;margin:1.8rem auto 0;font-size:1rem;color:var(--txm);line-height:1.75;animation:fsu .8s .8s both}
+    .h-ctas{display:flex;gap:.85rem;margin-top:2.2rem;flex-wrap:wrap;justify-content:center;animation:fsu .8s 1s both}
+    .h-scr{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.35rem;animation:fsu .8s 1.4s both}
+    .h-scr span{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.3em;color:var(--txm)}
+    .sl{width:1px;height:36px;background:linear-gradient(180deg,var(--gold-d),transparent);animation:sb 2s ease-in-out infinite}
+    @keyframes sb{0%,100%{transform:scaleY(1) translateY(0)}50%{transform:scaleY(.6) translateY(5px)}}
+    @keyframes fsu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .c{max-width:1300px;margin:0 auto;padding:0 2rem;position:relative;z-index:1}
+    section{padding:5.5rem 0}
+    .sh{text-align:center;margin-bottom:3rem}
+    .stag{font-family:'Cinzel',serif;font-size:.68rem;letter-spacing:.38em;color:var(--arc-g);text-transform:uppercase;display:block;margin-bottom:.7rem}
+    .stitle{font-family:'Cinzel Decorative',serif;font-size:clamp(1.5rem,2.8vw,2.2rem);font-weight:700;color:var(--gold-l)}
+    .dr{display:flex;align-items:center;gap:1rem;margin:.9rem auto 0;max-width:280px}
+    .dl{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d))}.dl:last-child{background:linear-gradient(270deg,transparent,var(--gold-d))}
+    .dg{width:7px;height:7px;background:var(--gold);clip-path:polygon(50% 0%,100% 50%,50% 100%,0 50%)}
+    .gr{width:100%;height:1px;background:linear-gradient(90deg,transparent 0%,var(--gold-d) 25%,var(--arc) 50%,var(--gold-d) 75%,transparent 100%);opacity:.35}
+    .ai-bar{display:flex;align-items:center;justify-content:space-between;background:var(--s2);border:1px solid var(--bd2);border-radius:6px;padding:1rem 1.5rem;margin-bottom:2rem;gap:1rem;flex-wrap:wrap}
+    .ai-b{display:flex;align-items:center;gap:.5rem;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.12em;color:var(--arc-g)}
+    .ai-d{width:8px;height:8px;border-radius:50%;background:var(--arc-g);animation:lp 1.5s infinite}
+    #ai-status{font-size:.78rem;color:var(--txm);font-style:italic}
+    #ai-ref{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.1em;background:rgba(139,69,255,.15);border:1px solid rgba(139,69,255,.35);color:var(--arc-g);padding:.45rem 1.1rem;border-radius:3px;cursor:pointer;transition:all .2s}
+    #ai-ref:hover{background:rgba(139,69,255,.3);transform:translateY(-1px)}
+    #ai-ref:disabled{opacity:.4;cursor:not-allowed;transform:none}
+    .ng{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
+    @media(max-width:900px){.ng{grid-template-columns:1fr}}
+    .nf{grid-column:1/-1;background:var(--s2);border:1px solid var(--bd);border-radius:6px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;transition:all .3s;position:relative}
+    @media(max-width:700px){.nf{grid-template-columns:1fr}}
+    .nf::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--arc),var(--gold),var(--cr))}
+    .nf:hover{transform:translateY(-4px);box-shadow:0 14px 50px rgba(139,69,255,.2),0 0 0 1px rgba(201,168,76,.3)}
+    .ni{position:relative;overflow:hidden;min-height:220px;background:linear-gradient(135deg,#120026,#08001a)}
+    .ni-in{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:4.5rem;opacity:.2}
+    .ni-ov{position:absolute;inset:0;background:linear-gradient(135deg,rgba(139,69,255,.35),rgba(176,32,48,.25))}
+    .ni-tag{position:absolute;top:.9rem;left:.9rem;background:var(--arc);color:#fff;font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;padding:.22rem .7rem;border-radius:2px;font-weight:700}
+    .nb{padding:1.8rem;display:flex;flex-direction:column;justify-content:center}
+    .nm{display:flex;gap:.8rem;margin-bottom:.85rem;align-items:center;flex-wrap:wrap}
+    .ndt{font-size:.7rem;color:var(--txm);letter-spacing:.04em}
+    .nct{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold-d);padding:.12rem .55rem;border-radius:2px}
+    .ntl{font-family:'Cinzel',serif;font-size:1.3rem;font-weight:700;color:var(--tx);line-height:1.3;margin-bottom:.7rem}
+    .nex{font-size:.88rem;color:var(--txm);line-height:1.7;margin-bottom:1.4rem}
+    .nl{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.12em;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:.35rem;transition:all .2s}
+    .nl:hover{color:var(--gold-l);gap:.7rem}.nl::after{content:'→'}
+    .nc{background:var(--s2);border:1px solid var(--bd);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s}
+    .nc:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 0 1px rgba(201,168,76,.22)}
+    .nc .ni{min-height:150px}.nc .nb{padding:1.35rem}.nc .ntl{font-size:.95rem}
+    .sk{background:linear-gradient(90deg,var(--s2) 25%,var(--s3) 50%,var(--s2) 75%);background-size:200% 100%;animation:sh 1.8s infinite;border-radius:4px}
+    @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .ap{background:var(--s2);border:1px solid var(--bd2);border-radius:8px;padding:2rem;margin-top:2rem}
+    .at{font-family:'Cinzel',serif;font-size:.88rem;font-weight:700;letter-spacing:.1em;color:var(--arc-g);margin-bottom:1.25rem;display:flex;align-items:center;gap:.6rem}
+    .at::before{content:'🔮';font-size:1.1rem}
+    #ai-iw{display:flex;gap:.75rem}
+    #ai-in{flex:1;background:var(--s3);border:1px solid var(--bd2);border-radius:4px;padding:.7rem 1rem;color:var(--tx);font-family:'Nunito Sans',sans-serif;font-size:.9rem;outline:none;transition:border-color .2s}
+    #ai-in:focus{border-color:var(--arc-g)}
+    #ai-in::placeholder{color:var(--txm)}
+    #ai-sb{background:linear-gradient(135deg,var(--arc),#6020cc);color:#fff;font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.1em;padding:.7rem 1.4rem;border-radius:4px;border:none;cursor:pointer;transition:all .2s;flex-shrink:0}
+    #ai-sb:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(139,69,255,.45)}
+    #ai-sb:disabled{opacity:.45;cursor:not-allowed;transform:none}
+    #ai-ans{margin-top:1.25rem;font-size:.9rem;line-height:1.75;color:var(--tx);min-height:0;background:rgba(139,69,255,.07);border-radius:4px;padding:0;transition:all .3s;overflow:hidden}
+    #ai-ans.vis{padding:1.1rem 1.25rem}
+    .qq{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.9rem}
+    .qb{font-size:.73rem;background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:20px;padding:.3rem .85rem;cursor:pointer;color:var(--txm);transition:all .2s}
+    .qb:hover{border-color:var(--arc-g);color:var(--arc-g)}
+    .rh{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:1.25rem 1.75rem;margin-bottom:1.2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem}
+    .rn{font-family:'Cinzel Decorative',serif;font-size:1.25rem;color:var(--gold-l)}
+    .rm{display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+    .rt{font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.1em;padding:.2rem .65rem;border-radius:2px;font-weight:700}
+    .rm-t{background:rgba(139,69,255,.2);color:var(--arc-g);border:1px solid rgba(139,69,255,.4)}
+    .rh-t{background:rgba(201,168,76,.15);color:var(--gold);border:1px solid rgba(201,168,76,.3)}
+    .rn-t{background:rgba(255,255,255,.06);color:var(--txm);border:1px solid rgba(255,255,255,.1)}
+    .rnew{background:rgba(176,32,48,.25);color:#ff8090;border:1px solid rgba(176,32,48,.4)}
+    .rs{background:rgba(74,222,128,.15);color:#4ade80;border:1px solid rgba(74,222,128,.35)}
+    .bg{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;margin-bottom:2.5rem}
+    .bc{background:var(--s3);border:1px solid var(--bd);border-radius:5px;padding:1.15rem;cursor:pointer;position:relative;overflow:hidden;transition:all .3s}
+    .bc::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--bc,rgba(139,69,255,.1)),transparent);opacity:0;transition:opacity .3s}
+    .bc:hover{transform:translateY(-3px);border-color:var(--bcb,rgba(139,69,255,.5))}.bc:hover::before{opacity:1}
+    .bno{font-family:'Cinzel Decorative',serif;font-size:1.9rem;font-weight:900;color:rgba(255,255,255,.04);position:absolute;top:.4rem;right:.65rem;line-height:1}
+    .bst{width:7px;height:7px;border-radius:50%;display:inline-block;margin-right:.35rem;animation:lp 2s infinite}
+    .bg{color:#4ade80;background:#4ade80}.by{color:var(--gold);background:var(--gold)}.br{color:#ff6080;background:#ff6080}
+    .bn{font-family:'Cinzel',serif;font-size:.93rem;font-weight:700;color:var(--tx);margin:.5rem 0 .25rem}
+    .bt{font-size:.7rem;color:var(--txm);margin-bottom:.9rem}
+    .bf{display:flex;align-items:center;justify-content:space-between}
+    .bd{display:flex;gap:3px}.bd span{width:16px;height:4px;border-radius:2px;background:rgba(255,255,255,.1)}.bd span.on{background:var(--bb,var(--gold))}
+    .bln{font-family:'Cinzel',serif;font-size:.63rem;letter-spacing:.07em;color:var(--gold);text-decoration:none;opacity:.7;transition:opacity .2s}.bc:hover .bln{opacity:1}
+    .mbg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:500;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s;backdrop-filter:blur(10px)}
+    .mbg.open{opacity:1;pointer-events:all}
+    .mod{background:var(--s2);border:1px solid var(--bd2);border-radius:8px;max-width:700px;width:100%;max-height:88vh;overflow-y:auto;position:relative;transform:translateY(20px);transition:transform .3s}
+    .mbg.open .mod{transform:translateY(0)}
+    .mt{position:sticky;top:0;background:var(--s2);border-bottom:1px solid var(--bd);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;z-index:1}
+    .mbn{font-family:'Cinzel Decorative',serif;font-size:1.1rem;color:var(--gold-l)}
+    .mcl{background:none;border:none;color:var(--txm);font-size:1.4rem;cursor:pointer;padding:.2rem .5rem;border-radius:3px;transition:color .2s}.mcl:hover{color:var(--gold-l)}
+    .mb{padding:1.5rem}
+    .ml{display:flex;align-items:center;gap:.8rem;color:var(--arc-g);font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.1em;padding:2rem}
+    .spin{width:20px;height:20px;border:2px solid rgba(139,69,255,.3);border-top-color:var(--arc-g);border-radius:50%;animation:sp .8s linear infinite;flex-shrink:0}
+    @keyframes sp{to{transform:rotate(360deg)}}
+    .gs{margin-bottom:1.5rem}
+    .gs h3{font-family:'Cinzel',serif;font-size:.8rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:1px solid var(--bd)}
+    .gs p,.gs li{font-size:.88rem;line-height:1.7;color:var(--txm)}
+    .gs ul{padding-left:1.2rem}.gs li{margin-bottom:.35rem}
+    .tw{background:var(--s2);border:1px solid var(--bd);border-radius:6px;overflow:hidden}
+    .tr{display:flex;align-items:stretch;border-bottom:1px solid rgba(255,255,255,.05)}.tr:last-child{border-bottom:none}
+    .tl{width:66px;min-height:62px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel Decorative',serif;font-size:1.35rem;font-weight:900;border-right:1px solid rgba(255,255,255,.07);flex-shrink:0}
+    .ts2{background:linear-gradient(135deg,rgba(201,168,76,.25),rgba(201,168,76,.08));color:var(--gold-l)}
+    .ta2{background:linear-gradient(135deg,rgba(139,69,255,.18),transparent);color:var(--arc-g)}
+    .tb2{background:linear-gradient(135deg,rgba(64,160,255,.13),transparent);color:#70b0ff}
+    .tc2{background:linear-gradient(135deg,rgba(100,200,100,.1),transparent);color:#80c880}
+    .td2{background:linear-gradient(135deg,rgba(150,150,150,.07),transparent);color:#777}
+    .tcs{display:flex;flex-wrap:wrap;gap:.5rem;padding:.7rem 1rem;align-items:center}
+    .ch{display:flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:4px;padding:.28rem .65rem;font-size:.76rem;font-weight:600;transition:all .2s;cursor:default}
+    .ch:hover{transform:translateY(-2px);border-color:var(--cc,#fff);color:var(--cc,#fff)}
+    .cd{width:7px;height:7px;border-radius:50%;background:var(--cc,#fff)}
+    .pn{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:1.75rem}
+    .ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.5rem}
+    .pt{font-family:'Cinzel',serif;font-size:.95rem;font-weight:700;color:var(--gold-l)}
+    .pv{font-family:'Cinzel',serif;font-size:.68rem;color:var(--arc-g);letter-spacing:.1em;background:rgba(139,69,255,.15);padding:.18rem .6rem;border-radius:2px;border:1px solid rgba(139,69,255,.3)}
+    .pi{display:flex;gap:.9rem;padding:.8rem 0;border-bottom:1px solid rgba(255,255,255,.05);align-items:flex-start}.pi:last-child{border-bottom:none}
+    .pi-ic{font-size:1.05rem;flex-shrink:0;margin-top:.1rem}
+    .pi-tx{font-size:.86rem;line-height:1.55;color:var(--txm)}.pi-tx strong{color:var(--tx);font-weight:600}
+    .pb2{font-size:.6rem;font-weight:700;padding:.1rem .42rem;border-radius:2px;margin-left:.35rem;vertical-align:middle}
+    .pb-b{background:rgba(74,222,128,.18);color:#6ee7a0;border:1px solid rgba(74,222,128,.3)}
+    .pb-n{background:rgba(255,80,80,.18);color:#ff9090;border:1px solid rgba(255,80,80,.3)}
+    .pb-new{background:rgba(139,69,255,.2);color:var(--arc-g);border:1px solid rgba(139,69,255,.3)}
+    .sb{display:flex;flex-direction:column;gap:1.4rem}
+    .wi{background:var(--s2);border:1px solid var(--bd);border-radius:6px;padding:1.4rem}
+    .wt{font-family:'Cinzel',serif;font-size:.78rem;font-weight:700;letter-spacing:.12em;color:var(--gold);text-transform:uppercase;margin-bottom:1.1rem;padding-bottom:.65rem;border-bottom:1px solid var(--bd)}
+    .wri{display:flex;justify-content:space-between;align-items:center;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);font-size:.83rem}.wri:last-child{border-bottom:none}
+    .wr-l{display:flex;align-items:center;gap:.55rem;color:var(--txm)}
+    .wd{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+    .wr-r{font-weight:600;font-size:.76rem}
+    .r1{color:var(--gold-l)}.r2{color:#c0c0c0}.r3{color:#c87040}.r4{color:var(--txm)}
+    .cdw{text-align:center}
+    .cde{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;color:var(--arc-g);margin-bottom:.2rem}
+    .cds{font-family:'Cinzel Decorative',serif;font-size:.75rem;color:var(--txm);margin-bottom:.9rem}
+    .cdb{display:flex;gap:.65rem;justify-content:center}
+    .cb{background:var(--s3);border:1px solid var(--bd);border-radius:4px;padding:.6rem .45rem;min-width:50px;text-align:center}
+    .cn{font-family:'Cinzel Decorative',serif;font-size:1.45rem;font-weight:700;color:var(--gold-l);line-height:1;display:block}
+    .cl{font-size:.55rem;color:var(--txm);letter-spacing:.1em;text-transform:uppercase;display:block;margin-top:.25rem}
+    footer{border-top:1px solid var(--bd);padding:2.5rem 0;position:relative;z-index:1;margin-top:2rem}
+    .fi{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .fd{font-size:.73rem;color:var(--txm);margin-top:.5rem;max-width:260px;line-height:1.65}
+    .fc{display:flex;gap:3rem;flex-wrap:wrap}
+    .fcol h4{font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.15em;color:var(--gold);text-transform:uppercase;margin-bottom:.9rem}
+    .fcol ul{list-style:none}.fcol li{margin-bottom:.45rem}
+    .fcol a{font-size:.82rem;color:var(--txm);text-decoration:none;transition:color .2s}.fcol a:hover{color:var(--gold-l)}
+    .fb{border-top:1px solid rgba(255,255,255,.05);margin-top:2rem;padding-top:1.4rem;text-align:center;font-size:.73rem;color:var(--txm)}
+    .lg{display:grid;grid-template-columns:2fr 1fr;gap:2rem}
+    @media(max-width:900px){.lg{grid-template-columns:1fr}}
+    .lr{display:inline-block;width:14px;height:14px;border:2px solid rgba(139,69,255,.25);border-top-color:var(--arc-g);border-radius:50%;animation:sp .7s linear infinite;vertical-align:middle;margin-right:.4rem}
+
+    /* ══════════════════════════════════════════
+       RAID GUIDE DETAILED DESIGN
+    ══════════════════════════════════════════ */
+    :root {
+      --rg-border:#2a2445; --rg-surface:#13101f; --rg-deep:#0d0b18;
+      --rg-purple:#4a1f8c; --rg-arc:#7b3fc4; --rg-shimmer:#c084fc;
+      --rg-glow:#e0b4ff; --rg-muted:#9990b8;
+      --rg-tank:#4299e1; --rg-heal:#48bb78; --rg-dps:#f6ad55;
+      --rg-sunwell:#ff8c42;
+    }
+
+    /* ── OVERVIEW TABLE ── */
+    .rg-overview-table {
+      width:100%; border-collapse:collapse; border:1px solid var(--rg-border);
+      margin-bottom:4rem; font-size:.88rem; font-family:'Nunito Sans',sans-serif;
+    }
+    .rg-overview-table th {
+      font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold); background:var(--s2);
+      padding:.75rem 1rem; text-align:left;
+      border-bottom:1px solid var(--rg-border); border-right:1px solid var(--rg-border);
+    }
+    .rg-overview-table td {
+      padding:.65rem 1rem; border-bottom:1px solid var(--rg-border);
+      border-right:1px solid var(--rg-border); color:var(--tx); vertical-align:middle;
+    }
+    .rg-overview-table tr:last-child td{border-bottom:none}
+    .rg-overview-table td:last-child,.rg-overview-table th:last-child{border-right:none}
+    .rg-overview-table tr:hover td{background:rgba(74,31,140,.06)}
+    .rg-diff-pips{display:flex;gap:4px;align-items:center}
+    .rg-pip{width:8px;height:8px;border-radius:50%;background:var(--rg-border);border:1px solid var(--rg-border)}
+    .rg-pip.on{background:var(--gold);border-color:var(--gold);box-shadow:0 0 5px var(--gold)}
+    .rg-pip.on.r{background:#e53e3e;border-color:#e53e3e;box-shadow:0 0 5px #e53e3e}
+
+    /* ── RAID SECTION WRAPPER ── */
+    .rg-section { margin-bottom:5rem; }
+
+    /* ── RAID HEADER ── */
+    .rg-header {
+      position:relative; padding:2.5rem 2.5rem 2rem;
+      border:1px solid var(--rg-border); border-bottom:none;
+      background:linear-gradient(135deg,var(--s2) 0%,var(--rg-deep) 100%); overflow:hidden;
+    }
+    .rg-header::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,transparent,var(--arc),var(--gold),var(--arc),transparent);
+    }
+    .rg-header-num {
+      font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.38em;
+      text-transform:uppercase; color:var(--gold-d); margin-bottom:.4rem;
+    }
+    .rg-header-title {
+      font-family:'Cinzel Decorative',serif;
+      font-size:clamp(1.5rem,3vw,2.5rem); font-weight:700; margin-bottom:.6rem;
+    }
+    .rg-header-meta { display:flex; gap:.75rem; flex-wrap:wrap; margin:.85rem 0 .5rem; }
+    .rg-tag {
+      padding:.25rem .75rem; border:1px solid; font-family:'Cinzel',serif;
+      font-size:.6rem; letter-spacing:.18em; text-transform:uppercase;
+    }
+    .rg-tag-arc{border-color:var(--arc);color:var(--rg-shimmer);background:rgba(123,63,196,.1)}
+    .rg-tag-gold{border-color:var(--gold-d);color:var(--gold-l);background:rgba(201,168,76,.08)}
+    .rg-tag-red{border-color:#7a2020;color:#f87171;background:rgba(220,38,38,.08)}
+    .rg-tag-green{border-color:#276044;color:#68d391;background:rgba(39,96,68,.1)}
+    .rg-lore {
+      font-family:'Crimson Pro',Georgia,serif; font-style:italic;
+      color:var(--rg-muted); font-size:1rem; margin-top:.85rem;
+      border-left:2px solid var(--rg-purple); padding-left:1.1rem; line-height:1.7;
+    }
+
+    /* ── BOSS LIST ── */
+    .rg-boss-list { border:1px solid var(--rg-border); }
+
+    /* ── BOSS details ELEMENT ── */
+    details.rg-boss { border-bottom:1px solid var(--rg-border); background:var(--rg-deep); transition:background .3s; }
+    details.rg-boss:last-child { border-bottom:none; }
+    details.rg-boss[open] { background:var(--s2); }
+    details.rg-boss > summary { list-style:none; }
+    details.rg-boss > summary::-webkit-details-marker { display:none; }
+
+    /* ── SUMMARY / TOGGLE ── */
+    .rg-toggle {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.35rem 1.75rem 1.35rem 1.25rem; cursor:pointer; user-select:none;
+    }
+    .rg-toggle:hover { background:rgba(74,31,140,.07); }
+    .rg-toggle-left { display:flex; align-items:center; gap:1.4rem; }
+    .rg-toggle-num {
+      font-family:'Cinzel Decorative',serif; font-size:1.35rem; font-weight:900;
+      color:var(--arc); min-width:2rem; text-align:center;
+    }
+    .rg-toggle-info h3 {
+      font-family:'Cinzel',serif; font-size:1.05rem; font-weight:600; color:var(--gold-l);
+    }
+    .rg-toggle-info small {
+      font-family:'Crimson Pro',serif; font-style:italic; color:var(--rg-muted); font-size:.88rem;
+    }
+    .rg-toggle-right { display:flex; align-items:center; gap:1.2rem; }
+    .rg-chevron { color:var(--rg-muted); font-size:.75rem; transition:transform .3s; }
+    details.rg-boss[open] .rg-chevron { transform:rotate(180deg); }
+    .rg-toggle-status {
+      font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.1em;
+      padding:.18rem .55rem; border-radius:2px; border:1px solid;
+    }
+    .rgs-live{border-color:#276044;color:#68d391;background:rgba(39,96,68,.18)}
+    .rgs-prog{border-color:var(--gold-d);color:var(--gold);background:rgba(201,168,76,.12)}
+    .rgs-hot{border-color:#7a2020;color:#f87171;background:rgba(220,38,38,.12)}
+
+    /* ── EXPANDED CONTENT ── */
+    .rg-expand { border-top:1px solid var(--rg-border); animation:slideD .3s ease; }
+    @keyframes slideD { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── INNER LAYOUT ── */
+    .rg-card-inner {
+      display:grid; grid-template-columns:260px 1fr; min-height:260px;
+    }
+    @media(max-width:860px){.rg-card-inner{grid-template-columns:1fr}}
+
+    /* ── IDENTITY PANEL ── */
+    .rg-identity {
+      padding:1.75rem; border-right:1px solid var(--rg-border);
+      display:flex; flex-direction:column; gap:.85rem;
+      background:linear-gradient(180deg,rgba(74,31,140,.1) 0%,transparent 100%);
+      position:relative; overflow:hidden;
+    }
+    @media(max-width:860px){.rg-identity{border-right:none;border-bottom:1px solid var(--rg-border)}}
+    .rg-boss-num-bg {
+      font-family:'Cinzel Decorative',serif; font-size:3.5rem; font-weight:900;
+      color:rgba(255,255,255,.04); position:absolute; bottom:.75rem; right:1rem;
+      line-height:1; pointer-events:none; user-select:none;
+    }
+    .rg-type-badge {
+      display:inline-flex; align-items:center; gap:.35rem;
+      font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.22em;
+      text-transform:uppercase; padding:.22rem .6rem; border:1px solid; width:fit-content;
+    }
+    .rg-type-single{border-color:var(--arc);color:var(--rg-shimmer)}
+    .rg-type-dual{border-color:#c0392b;color:#e74c3c}
+    .rg-type-triple{border-color:var(--rg-sunwell);color:var(--rg-sunwell)}
+    .rg-boss-name {
+      font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700;
+      line-height:1.25; color:var(--gold-l);
+    }
+    .rg-boss-sub {
+      font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--rg-muted); margin-top:-.5rem;
+    }
+    .rg-diff-row { display:flex; align-items:center; gap:.7rem; margin-top:auto; }
+    .rg-diff-label {
+      font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--rg-muted);
+    }
+    .rg-diff-pips2 { display:flex; gap:4px; }
+    .rg-pip2 {
+      width:8px; height:8px; border-radius:50%;
+      background:var(--rg-border); border:1px solid var(--rg-border);
+    }
+    .rg-pip2.on { background:var(--gold); border-color:var(--gold); box-shadow:0 0 5px var(--gold); }
+    .rg-pip2.on.r { background:#e53e3e; border-color:#e53e3e; box-shadow:0 0 5px #e53e3e; }
+
+    /* ── BODY PANEL ── */
+    .rg-body { padding:1.75rem 2rem; display:flex; flex-direction:column; gap:1.35rem; }
+
+    /* ── CORE MECHANIC ── */
+    .rg-core {
+      border:1px solid var(--rg-purple); background:rgba(74,31,140,.12);
+      padding:1.1rem 1.35rem; position:relative;
+    }
+    .rg-core::before {
+      content:'KERNMECHANIK'; position:absolute; top:-.58rem; left:.9rem;
+      background:var(--s2); padding:0 .45rem;
+      font-family:'Cinzel',serif; font-size:.53rem; letter-spacing:.32em; color:var(--rg-shimmer);
+    }
+    .rg-core p {
+      font-family:'Crimson Pro',serif; color:var(--tx); font-size:.97rem; line-height:1.7;
+    }
+
+    /* ── ALERT ── */
+    .rg-alert {
+      border:1px solid; padding:.85rem 1.2rem; font-family:'Crimson Pro',serif;
+      font-size:.92rem; line-height:1.6; display:flex; gap:.7rem; align-items:flex-start;
+    }
+    .rg-alert-warn{border-color:#b7791f;background:rgba(183,121,31,.08);color:#fbd38d}
+    .rg-alert-danger{border-color:#7a2020;background:rgba(220,38,38,.08);color:#f87171}
+    .rg-alert-info{border-color:var(--arc);background:rgba(123,63,196,.08);color:var(--rg-shimmer)}
+
+    /* ── ABILITIES ── */
+    .rg-ab-title {
+      font-family:'Cinzel',serif; font-size:.67rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:.7rem;
+    }
+    .rg-ab-list { display:flex; flex-direction:column; gap:.45rem; }
+    .rg-ab-item { display:flex; gap:.75rem; align-items:flex-start; font-size:.93rem; }
+    .rg-ab-name {
+      font-family:'Cinzel',serif; font-size:.75rem; color:var(--rg-shimmer);
+      font-weight:600; min-width:170px; flex-shrink:0;
+    }
+    .rg-ab-desc { font-family:'Crimson Pro',serif; color:var(--rg-muted); line-height:1.5; }
+
+    /* ── ROLE TIPS ── */
+    .rg-roles {
+      display:grid; grid-template-columns:repeat(3,1fr);
+      gap:0; border:1px solid var(--rg-border); margin-top:.25rem;
+    }
+    @media(max-width:860px){.rg-roles{grid-template-columns:1fr}}
+    .rg-role {
+      padding:.9rem 1.1rem; border-right:1px solid var(--rg-border); font-size:.88rem;
+    }
+    .rg-role:last-child{border-right:none}
+    @media(max-width:860px){.rg-role{border-right:none;border-bottom:1px solid var(--rg-border)}}
+    @media(max-width:860px){.rg-role:last-child{border-bottom:none}}
+    .rg-role-label {
+      font-family:'Cinzel',serif; font-size:.56rem; letter-spacing:.28em;
+      text-transform:uppercase; margin-bottom:.35rem;
+      display:flex; align-items:center; gap:.35rem;
+    }
+    .rg-role-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .rg-role-tank .rg-role-label{color:var(--rg-tank)}
+    .rg-role-heal .rg-role-label{color:var(--rg-heal)}
+    .rg-role-dps  .rg-role-label{color:var(--rg-dps)}
+    .rg-role-tank .rg-role-dot{background:var(--rg-tank)}
+    .rg-role-heal .rg-role-dot{background:var(--rg-heal)}
+    .rg-role-dps  .rg-role-dot{background:var(--rg-dps)}
+    .rg-role p { font-family:'Crimson Pro',serif; color:var(--rg-muted); line-height:1.55; }
+
+    /* ── PHASE BLOCK ── */
+    .rg-phase {
+      border:1px solid var(--rg-border); padding:1.1rem 1.35rem;
+      background:rgba(13,11,24,.8); position:relative;
+    }
+    .rg-phase-title {
+      font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:.5rem;
+    }
+    .rg-phase p { font-family:'Crimson Pro',serif; color:var(--rg-muted); font-size:.95rem; line-height:1.65; }
+
+    /* ── LOOT BOX ── */
+    .rg-loot {
+      border-top:1px solid var(--rg-border); border-bottom:1px solid var(--rg-border);
+      background:rgba(212,168,85,.04); padding:1.25rem 2rem;
+      display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap;
+    }
+    .rg-loot-title {
+      font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--gold); flex-shrink:0;
+    }
+    .rg-loot-items { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .rg-loot-item {
+      padding:.18rem .65rem; background:rgba(212,168,85,.1);
+      border:1px solid var(--gold-d); font-family:'Cinzel',serif;
+      font-size:.65rem; color:var(--gold-l); letter-spacing:.09em;
+    }
+
+    /* ── KI GUIDE FOOTER ── */
+    .rg-footer {
+      padding:1rem 2rem; display:flex; align-items:center;
+      justify-content:space-between; flex-wrap:wrap; gap:.75rem;
+    }
+    .rg-footer-note {
+      font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--rg-muted);
+    }
+    .rg-ki-btn {
+      font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.1em;
+      background:linear-gradient(135deg,rgba(139,69,255,.2),rgba(139,69,255,.1));
+      border:1px solid rgba(139,69,255,.4); color:var(--rg-shimmer);
+      padding:.5rem 1.1rem; cursor:pointer; transition:all .2s; border-radius:2px;
+    }
+    .rg-ki-btn:hover { background:rgba(139,69,255,.35); transform:translateY(-1px); }
+
+    /* ═══════════════════════════════════════════════════
+       DETAILED RAID GUIDE STYLES (from uploaded design)
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --rg-void:#050408; --rg-deep:#0a0710; --rg-abyss:#0d0b18;
+      --rg-surface:#13101f; --rg-raised:#1a1630; --rg-border:#2a2445;
+      --rg-vp:#4a1f8c; --rg-arc:#7b3fc4; --rg-fel:#9b5de5;
+      --rg-shimmer:#c084fc; --rg-glow:#e0b4ff;
+      --rg-gold:#d4a855; --rg-gold-l:#f0c870; --rg-gold-d:#8a6a30;
+      --rg-light:#fff9f0; --rg-muted:#9990b8; --rg-sunwell:#ff8c42;
+      --rg-tank:#4299e1; --rg-heal:#48bb78; --rg-dps:#f6ad55;
+    }
+
+    /* ── OVERVIEW TABLE ── */
+    .rg-table { width:100%; border-collapse:collapse; border:1px solid var(--rg-border);
+      margin-bottom:3.5rem; font-size:.88rem; }
+    .rg-table th { font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold); background:var(--s2);
+      padding:.75rem 1rem; text-align:left;
+      border-bottom:1px solid var(--rg-border); border-right:1px solid var(--rg-border); }
+    .rg-table td { padding:.65rem 1rem; border-bottom:1px solid var(--rg-border);
+      border-right:1px solid var(--rg-border); color:var(--tx); vertical-align:middle; }
+    .rg-table tr:last-child td { border-bottom:none; }
+    .rg-table td:last-child,.rg-table th:last-child { border-right:none; }
+    .rg-table tr:hover td { background:rgba(74,31,140,.06); }
+    .rg-pips { display:flex; gap:4px; align-items:center; }
+    .rg-pip { width:8px; height:8px; border-radius:50%;
+      background:var(--rg-border); border:1px solid var(--rg-border); }
+    .rg-pip.on { background:var(--gold); border-color:var(--gold); box-shadow:0 0 5px var(--gold); }
+    .rg-pip.on.r { background:#e53e3e; border-color:#e53e3e; box-shadow:0 0 5px #e53e3e; }
+
+    /* ── RAID WRAPPER ── */
+    .rg-wrap { margin-bottom:4.5rem; }
+
+    /* ── RAID HEADER ── */
+    .rg-hdr { position:relative; padding:2.5rem 2.5rem 2rem;
+      border:1px solid var(--rg-border); border-bottom:none;
+      background:linear-gradient(135deg,var(--s2) 0%,var(--rg-abyss) 100%); overflow:hidden; }
+    .rg-hdr::before { content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,transparent,var(--arc),var(--gold),var(--arc),transparent); }
+    .rg-hdr-num { font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.38em;
+      text-transform:uppercase; color:var(--gold-d); margin-bottom:.4rem; }
+    .rg-hdr-title { font-family:'Cinzel Decorative',serif;
+      font-size:clamp(1.5rem,3vw,2.5rem); font-weight:700; margin-bottom:.6rem; line-height:1.15; }
+    .rg-hdr-meta { display:flex; gap:.65rem; flex-wrap:wrap; margin:.75rem 0 .4rem; }
+    .rg-tag { padding:.22rem .7rem; border:1px solid; font-family:'Cinzel',serif;
+      font-size:.58rem; letter-spacing:.18em; text-transform:uppercase; }
+    .rg-tag-arc { border-color:var(--arc); color:var(--rg-shimmer); background:rgba(123,63,196,.1); }
+    .rg-tag-gold { border-color:var(--gold-d); color:var(--gold-l); background:rgba(212,168,85,.08); }
+    .rg-tag-red { border-color:#7a2020; color:#f87171; background:rgba(220,38,38,.08); }
+    .rg-tag-grn { border-color:#276044; color:#68d391; background:rgba(39,96,68,.1); }
+    .rg-lore { font-family:'Crimson Pro',Georgia,serif; font-style:italic;
+      color:var(--rg-muted); font-size:1rem; margin-top:.8rem;
+      border-left:2px solid var(--rg-vp); padding-left:1.1rem; line-height:1.7; }
+
+    /* ── BOSS LIST ── */
+    .rg-boss-list { border:1px solid var(--rg-border); }
+    details.rg-boss { border-bottom:1px solid var(--rg-border); background:var(--rg-abyss); transition:background .3s; }
+    details.rg-boss:last-child { border-bottom:none; }
+    details.rg-boss[open] { background:var(--rg-surface); }
+    details.rg-boss>summary { list-style:none; }
+    details.rg-boss>summary::-webkit-details-marker { display:none; }
+
+    /* ── TOGGLE ROW ── */
+    .rg-toggle { display:flex; align-items:center; justify-content:space-between;
+      padding:1.3rem 1.75rem 1.3rem 1.25rem; cursor:pointer; user-select:none; }
+    .rg-toggle:hover { background:rgba(74,31,140,.07); }
+    .rg-tgl-l { display:flex; align-items:center; gap:1.35rem; }
+    .rg-tgl-num { font-family:'Cinzel Decorative',serif; font-size:1.35rem; font-weight:900;
+      color:var(--arc); min-width:2rem; text-align:center; }
+    .rg-tgl-info h3 { font-family:'Cinzel',serif; font-size:1.05rem; font-weight:600; color:var(--gold-l); }
+    .rg-tgl-info small { font-family:'Crimson Pro',serif; font-style:italic; color:var(--rg-muted); font-size:.88rem; }
+    .rg-tgl-r { display:flex; align-items:center; gap:1.1rem; }
+    .rg-chevron { color:var(--rg-muted); font-size:.75rem; transition:transform .3s; }
+    details.rg-boss[open] .rg-chevron { transform:rotate(180deg); }
+    .rg-status { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.1em;
+      padding:.18rem .55rem; border-radius:2px; border:1px solid; }
+    .rs-ok { border-color:#276044; color:#68d391; background:rgba(39,96,68,.18); }
+    .rs-prog { border-color:var(--gold-d); color:var(--gold); background:rgba(201,168,76,.12); }
+    .rs-hot { border-color:#7a2020; color:#f87171; background:rgba(220,38,38,.12); }
+
+    /* ── EXPANDED BODY ── */
+    .rg-expand { border-top:1px solid var(--rg-border); animation:rgSlide .3s ease; }
+    @keyframes rgSlide { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── INNER CARD GRID ── */
+    .rg-inner { display:grid; grid-template-columns:260px 1fr; min-height:260px; }
+    @media(max-width:860px){ .rg-inner{grid-template-columns:1fr} }
+
+    /* ── IDENTITY PANEL ── */
+    .rg-id { padding:1.75rem; border-right:1px solid var(--rg-border);
+      display:flex; flex-direction:column; gap:.85rem;
+      background:linear-gradient(180deg,rgba(74,31,140,.1) 0%,transparent 100%);
+      position:relative; overflow:hidden; }
+    @media(max-width:860px){ .rg-id{border-right:none;border-bottom:1px solid var(--rg-border)} }
+    .rg-id-bg { font-family:'Cinzel Decorative',serif; font-size:3.5rem; font-weight:900;
+      color:rgba(255,255,255,.04); position:absolute; bottom:.75rem; right:1rem;
+      line-height:1; pointer-events:none; user-select:none; }
+    .rg-badge { display:inline-flex; align-items:center; gap:.35rem; font-family:'Cinzel',serif;
+      font-size:.58rem; letter-spacing:.22em; text-transform:uppercase;
+      padding:.22rem .6rem; border:1px solid; width:fit-content; }
+    .rb-single { border-color:var(--arc); color:var(--rg-shimmer); }
+    .rb-dual { border-color:#c0392b; color:#e74c3c; }
+    .rb-triple { border-color:var(--rg-sunwell); color:var(--rg-sunwell); }
+    .rb-end { border-color:var(--gold-d); color:var(--gold-l); }
+    .rg-bname { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700;
+      line-height:1.25; color:var(--gold-l); }
+    .rg-bsub { font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--rg-muted); margin-top:-.45rem; }
+    .rg-diff { display:flex; align-items:center; gap:.7rem; margin-top:auto; }
+    .rg-diff-lbl { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--rg-muted); }
+    .rg-diff-pips { display:flex; gap:4px; }
+    .rg-p { width:8px; height:8px; border-radius:50%;
+      background:var(--rg-border); border:1px solid var(--rg-border); }
+    .rg-p.on { background:var(--gold); border-color:var(--gold); box-shadow:0 0 5px var(--gold); }
+    .rg-p.on.r { background:#e53e3e; border-color:#e53e3e; box-shadow:0 0 5px #e53e3e; }
+
+    /* ── BODY PANEL ── */
+    .rg-body { padding:1.75rem 2rem; display:flex; flex-direction:column; gap:1.3rem; }
+
+    /* ── CORE MECHANIC ── */
+    .rg-core { border:1px solid var(--rg-vp); background:rgba(74,31,140,.12);
+      padding:1.1rem 1.35rem; position:relative; }
+    .rg-core::before { content:'KERNMECHANIK'; position:absolute; top:-.58rem; left:.9rem;
+      background:var(--rg-surface); padding:0 .45rem;
+      font-family:'Cinzel',serif; font-size:.53rem; letter-spacing:.32em; color:var(--rg-shimmer); }
+    .rg-core p { font-family:'Crimson Pro',serif; color:var(--rg-light); font-size:.97rem; line-height:1.7; }
+
+    /* ── ALERT ── */
+    .rg-alert { border:1px solid; padding:.85rem 1.2rem;
+      font-family:'Crimson Pro',serif; font-size:.92rem; line-height:1.6;
+      display:flex; gap:.7rem; align-items:flex-start; }
+    .ra-warn { border-color:#b7791f; background:rgba(183,121,31,.08); color:#fbd38d; }
+    .ra-danger { border-color:#7a2020; background:rgba(220,38,38,.08); color:#f87171; }
+    .ra-info { border-color:var(--arc); background:rgba(123,63,196,.08); color:var(--rg-shimmer); }
+
+    /* ── ABILITIES ── */
+    .rg-ab-title { font-family:'Cinzel',serif; font-size:.67rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:.7rem; }
+    .rg-ab-list { display:flex; flex-direction:column; gap:.45rem; }
+    .rg-ab-item { display:flex; gap:.75rem; align-items:flex-start; }
+    .rg-ab-name { font-family:'Cinzel',serif; font-size:.75rem; color:var(--rg-shimmer);
+      font-weight:600; min-width:170px; flex-shrink:0; line-height:1.4; }
+    .rg-ab-desc { font-family:'Crimson Pro',serif; color:var(--rg-muted);
+      line-height:1.5; font-size:.93rem; }
+
+    /* ── ROLE TIPS ── */
+    .rg-roles { display:grid; grid-template-columns:repeat(3,1fr);
+      gap:0; border:1px solid var(--rg-border); margin-top:.25rem; }
+    @media(max-width:860px){ .rg-roles{grid-template-columns:1fr} }
+    .rg-role { padding:.9rem 1.1rem; border-right:1px solid var(--rg-border); font-size:.88rem; }
+    .rg-role:last-child { border-right:none; }
+    @media(max-width:860px){ .rg-role{border-right:none;border-bottom:1px solid var(--rg-border)} }
+    @media(max-width:860px){ .rg-role:last-child{border-bottom:none} }
+    .rg-rl { font-family:'Cinzel',serif; font-size:.56rem; letter-spacing:.28em;
+      text-transform:uppercase; margin-bottom:.35rem;
+      display:flex; align-items:center; gap:.35rem; }
+    .rg-rdot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .rr-tank .rg-rl { color:var(--rg-tank); } .rr-tank .rg-rdot { background:var(--rg-tank); }
+    .rr-heal .rg-rl { color:var(--rg-heal); } .rr-heal .rg-rdot { background:var(--rg-heal); }
+    .rr-dps  .rg-rl { color:var(--rg-dps);  } .rr-dps  .rg-rdot { background:var(--rg-dps); }
+    .rg-role p { font-family:'Crimson Pro',serif; color:var(--rg-muted); line-height:1.55; }
+
+    /* ── PHASE BLOCK ── */
+    .rg-phase { border:1px solid var(--rg-border); padding:1.1rem 1.35rem;
+      background:rgba(13,11,24,.8); }
+    .rg-phase-t { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:.5rem; }
+    .rg-phase p { font-family:'Crimson Pro',serif; color:var(--rg-muted); font-size:.95rem; line-height:1.65; }
+
+    /* ── LOOT BAR ── */
+    .rg-loot { border-top:1px solid var(--rg-border);
+      background:rgba(212,168,85,.04); padding:1.1rem 2rem;
+      display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+    .rg-loot-t { font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--gold); flex-shrink:0; }
+    .rg-loot-items { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .rg-li { padding:.18rem .65rem; background:rgba(212,168,85,.1);
+      border:1px solid var(--gold-d); font-family:'Cinzel',serif;
+      font-size:.65rem; color:var(--gold-l); letter-spacing:.09em; }
+
+    /* ── FOOTER BAR ── */
+    .rg-foot { padding:.9rem 2rem; display:flex; align-items:center;
+      justify-content:space-between; flex-wrap:wrap; gap:.75rem;
+      border-top:1px solid var(--rg-border); }
+    .rg-foot-note { font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--rg-muted); }
+    .rg-ki { font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.1em;
+      background:linear-gradient(135deg,rgba(139,69,255,.2),rgba(139,69,255,.1));
+      border:1px solid rgba(139,69,255,.4); color:var(--rg-shimmer);
+      padding:.5rem 1.1rem; cursor:pointer; transition:all .2s; border-radius:2px; }
+    .rg-ki:hover { background:rgba(139,69,255,.35); transform:translateY(-1px); }
+
+
+    /* ═══════════════════════════════════════════════════
+       TIER LIST STYLES (from uploaded design)
+    ═══════════════════════════════════════════════════ */
+    :root {
+      --tl-s:#ff4d4d; --tl-ap:#ff9b3d; --tl-a:#f0c870; --tl-b:#68d391; --tl-c:#63b3ed;
+    }
+
+    /* ── TAB BAR ── */
+    .tl-tabs { display:flex; justify-content:center; gap:0; border:1px solid var(--rg-border);
+      max-width:520px; margin:0 auto 2rem; overflow:hidden; }
+    .tl-tab { flex:1; padding:.7rem 1.1rem; font-family:'Cinzel',serif; font-size:.68rem;
+      letter-spacing:.2em; text-transform:uppercase; background:var(--s2); color:var(--txm);
+      border:none; border-right:1px solid var(--rg-border); cursor:pointer; transition:all .25s;
+      position:relative; }
+    .tl-tab:last-child { border-right:none; }
+    .tl-tab.active { background:var(--s3); color:var(--gold-l); }
+    .tl-tab.active::after { content:''; position:absolute; bottom:0; left:0; right:0;
+      height:2px; background:var(--gold); }
+    .tl-tab:hover:not(.active) { background:rgba(255,255,255,.03); color:var(--tx); }
+
+    /* ── ROLE PANEL ── */
+    .tl-panel { display:none; }
+    .tl-panel.active { display:block; }
+
+    /* ── ROLE INTRO BAR ── */
+    .tl-intro { border:1px solid var(--rg-border); background:var(--s2); padding:1.35rem 1.75rem;
+      margin-bottom:1.4rem; display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.25rem;
+      position:relative; overflow:hidden; }
+    .tl-intro::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; }
+    .tl-intro.ti-tank::before { background:linear-gradient(90deg,transparent,var(--rg-tank),transparent); }
+    .tl-intro.ti-heal::before { background:linear-gradient(90deg,transparent,var(--rg-heal),transparent); }
+    .tl-intro.ti-dps::before  { background:linear-gradient(90deg,transparent,var(--rg-dps),transparent); }
+    @media(max-width:700px){ .tl-intro{grid-template-columns:1fr} }
+    .tl-stat .tl-lbl { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--rg-muted); margin-bottom:.25rem; }
+    .tl-stat .tl-val { font-family:'Cinzel',serif; font-size:.95rem; font-weight:700;
+      color:var(--gold-l); line-height:1.2; }
+    .tl-stat .tl-note { font-family:'Crimson Pro',serif; font-size:.82rem; color:var(--rg-muted);
+      font-style:italic; margin-top:.12rem; }
+
+    /* ── TIER INFO STRIP ── */
+    .tl-strip { display:grid; grid-template-columns:repeat(5,1fr); gap:1px;
+      background:var(--rg-border); border:1px solid var(--rg-border); margin-bottom:1.2rem; }
+    @media(max-width:640px){ .tl-strip{grid-template-columns:repeat(3,1fr)} }
+    .tl-cell { background:var(--rg-abyss); padding:.7rem .9rem; text-align:center; }
+    .tl-cell-ltr { font-family:'Cinzel Decorative',serif; font-size:1.25rem; font-weight:900;
+      line-height:1; margin-bottom:.18rem; }
+    .tl-cell-desc { font-size:.68rem; color:var(--rg-muted); line-height:1.4; }
+
+    /* ── TIER BLOCK ── */
+    .tl-block { display:flex; margin-bottom:5px; border:1px solid var(--rg-border);
+      overflow:hidden; position:relative; }
+    .tl-block::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; }
+    .tl-block.tb-s::before  { background:var(--tl-s); }
+    .tl-block.tb-ap::before { background:var(--tl-ap); }
+    .tl-block.tb-a::before  { background:var(--tl-a); }
+    .tl-block.tb-b::before  { background:var(--tl-b); }
+    .tl-block.tb-c::before  { background:var(--tl-c); }
+
+    .tl-lbl { display:flex; flex-direction:column; align-items:center; justify-content:center;
+      min-width:62px; font-family:'Cinzel Decorative',serif; font-size:1.55rem; font-weight:900;
+      padding:.45rem; flex-shrink:0; position:relative; }
+    .tl-lbl::after { content:''; position:absolute; right:0; top:0; bottom:0;
+      width:1px; background:var(--rg-border); }
+    .tb-s  .tl-lbl { background:rgba(255,77,77,.12);  color:var(--tl-s); }
+    .tb-ap .tl-lbl { background:rgba(255,155,61,.10); color:var(--tl-ap); }
+    .tb-a  .tl-lbl { background:rgba(240,200,112,.08);color:var(--tl-a); }
+    .tb-b  .tl-lbl { background:rgba(104,211,145,.07);color:var(--tl-b); }
+    .tb-c  .tl-lbl { background:rgba(99,179,237,.07); color:var(--tl-c); }
+
+    .tl-chips { display:flex; flex-wrap:wrap; gap:7px; padding:.75rem 1.1rem;
+      align-items:center; background:var(--rg-abyss); flex:1; }
+
+    /* ── SPEC CHIP ── */
+    .tl-chip { display:inline-flex; flex-direction:column; align-items:center; gap:3px;
+      padding:.4rem .75rem; border:1px solid; background:rgba(255,255,255,.02);
+      cursor:default; transition:all .2s; min-width:105px; text-align:center; }
+    .tl-chip:hover { background:rgba(255,255,255,.05); transform:translateY(-2px); z-index:1; }
+    .tl-chip-name { font-family:'Cinzel',serif; font-size:.66rem; font-weight:600;
+      letter-spacing:.05em; line-height:1.2; }
+    .tl-chip-class { font-size:.58rem; color:var(--rg-muted); font-style:italic; }
+    .tl-chip-badge { font-family:'Cinzel',serif; font-size:.48rem; letter-spacing:.15em;
+      text-transform:uppercase; padding:1px 5px; border-radius:2px; white-space:nowrap; }
+
+    .tb-s  .tl-chip { border-color:rgba(255,77,77,.35);   color:#ffa0a0; }
+    .tb-ap .tl-chip { border-color:rgba(255,155,61,.30);  color:#ffc080; }
+    .tb-a  .tl-chip { border-color:rgba(240,200,112,.28); color:var(--gold-l); }
+    .tb-b  .tl-chip { border-color:rgba(104,211,145,.25); color:#9ae6b4; }
+    .tb-c  .tl-chip { border-color:rgba(99,179,237,.22);  color:#90cdf4; }
+
+    .badge-new   { background:rgba(255,77,77,.18);  color:#f87171; border:1px solid rgba(255,77,77,.4); }
+    .badge-dh    { background:rgba(155,93,229,.25); color:var(--rg-shimmer); border:1px solid rgba(155,93,229,.4); }
+    .badge-phys  { background:rgba(255,165,0,.15);  color:#fbd38d; border:1px solid rgba(255,165,0,.35); }
+    .badge-sup   { background:rgba(72,187,120,.15); color:#9ae6b4; border:1px solid rgba(72,187,120,.35); }
+    .badge-unk   { background:rgba(160,160,160,.12);color:var(--rg-muted); border:1px solid rgba(160,160,160,.25); }
+
+    /* ── LEGEND BAR ── */
+    .tl-legend { display:flex; flex-wrap:wrap; gap:.55rem; margin:1.5rem 0;
+      padding:1.1rem 1.4rem; border:1px solid var(--rg-border); background:var(--s2); }
+    .tl-legend-title { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.35em;
+      text-transform:uppercase; color:var(--rg-muted); width:100%; margin-bottom:.25rem; }
+    .tl-legend-item { display:flex; align-items:center; gap:.45rem;
+      font-size:.78rem; color:var(--rg-muted); }
+
+    /* ── NOTES GRID ── */
+    .tl-notes { display:grid; grid-template-columns:1fr 1fr; gap:.9rem; margin-top:2rem; }
+    @media(max-width:700px){ .tl-notes{grid-template-columns:1fr} }
+    .tl-note { border:1px solid var(--rg-border); background:var(--s2); padding:1.35rem 1.5rem; }
+    .tl-note h4 { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--gold); margin-bottom:.55rem; }
+    .tl-note p { font-family:'Crimson Pro',serif; color:var(--rg-muted);
+      font-size:.9rem; line-height:1.65; }
+
+
+    /* ══════════════════════════════════════════════════════
+       UPLOADED RAID-GUIDE CSS — original class names kept
+    ══════════════════════════════════════════════════════ */
+    :root {
+      --void:#050408;--deep2:#0a0710;--abyss:#0d0b18;
+      --surface2b:#13101f;--raised:#1a1630;--border2:#2a2445;
+      --void-purple:#4a1f8c;--arcane2:#7b3fc4;--fel:#9b5de5;
+      --shimmer:#c084fc;--rg-glow:#e0b4ff;
+      --gold2:#d4a855;--gold-light2:#f0c870;--gold-dim2:#8a6a30;
+      --light2:#fff9f0;--muted:#9990b8;--sunwell:#ff8c42;
+      --tank:#4299e1;--heal:#48bb78;--dps:#f6ad55;
+    }
+
+    /* ── RAID SECTION ── */
+    .raid-section { margin-bottom:6rem; }
+
+    .raid-header {
+      position:relative; padding:2.5rem 2.5rem 2rem;
+      border:1px solid var(--border2); border-bottom:none;
+      background:linear-gradient(135deg,var(--surface2b) 0%,var(--abyss) 100%); overflow:hidden;
+    }
+    .raid-header::before {
+      content:''; position:absolute; top:0; left:0; right:0; height:3px;
+      background:linear-gradient(90deg,transparent,var(--arcane2),var(--gold2),var(--arcane2),transparent);
+    }
+    .raid-number { font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.4em;
+      text-transform:uppercase; color:var(--gold-dim2); margin-bottom:.5rem; }
+    .raid-title { font-family:'Cinzel Decorative',serif;
+      font-size:clamp(1.6rem,3.5vw,2.8rem); font-weight:700; margin-bottom:.75rem; line-height:1.15; }
+    .raid-meta { display:flex; gap:1rem; flex-wrap:wrap; margin-top:1rem; }
+    .tag { padding:.28rem .75rem; border:1px solid; font-family:'Cinzel',serif;
+      font-size:.62rem; letter-spacing:.2em; text-transform:uppercase; }
+    .tag-purple { border-color:var(--arcane2); color:var(--shimmer); background:rgba(123,63,196,.1); }
+    .tag-gold   { border-color:var(--gold-dim2); color:var(--gold-light2); background:rgba(212,168,85,.08); }
+    .tag-red    { border-color:#7a2020; color:#f87171; background:rgba(220,38,38,.08); }
+    .tag-green  { border-color:#276044; color:#68d391; background:rgba(39,96,68,.1); }
+    .raid-lore { font-family:'Crimson Pro',Georgia,serif; font-style:italic;
+      color:var(--muted); font-size:1rem; margin-top:1rem;
+      border-left:2px solid var(--void-purple); padding-left:1.1rem; line-height:1.7; }
+
+    /* ── BOSS GRID ── */
+    .boss-grid { border:1px solid var(--border2); }
+
+    /* ── BOSS CARD (details element) ── */
+    details.boss-card { border-bottom:1px solid var(--border2); background:var(--abyss); transition:background .3s; }
+    details.boss-card:last-child { border-bottom:none; }
+    details.boss-card[open] { background:var(--surface2b); }
+    details.boss-card>summary { list-style:none; }
+    details.boss-card>summary::-webkit-details-marker { display:none; }
+
+    /* ── TOGGLE ROW ── */
+    .boss-toggle { display:flex; align-items:center; justify-content:space-between;
+      padding:1.35rem 1.75rem 1.35rem 1.25rem; cursor:pointer; user-select:none; }
+    .boss-toggle:hover { background:rgba(74,31,140,.07); }
+    .boss-toggle-left { display:flex; align-items:center; gap:1.4rem; }
+    .boss-toggle-number { font-family:'Cinzel Decorative',serif; font-size:1.35rem;
+      font-weight:900; color:var(--arcane2); min-width:2rem; text-align:center; }
+    .boss-toggle-info h3 { font-family:'Cinzel',serif; font-size:1.05rem;
+      font-weight:600; color:var(--gold-light2); }
+    .boss-toggle-info small { font-family:'Crimson Pro',serif; font-style:italic;
+      color:var(--muted); font-size:.88rem; }
+    .boss-toggle-right { display:flex; align-items:center; gap:1.1rem; }
+    .chevron { color:var(--muted); font-size:.75rem; transition:transform .3s; }
+    details.boss-card[open] .chevron { transform:rotate(180deg); }
+
+    .boss-status { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.1em;
+      padding:.18rem .55rem; border-radius:2px; border:1px solid; }
+    .bs-ok   { border-color:#276044; color:#68d391; background:rgba(39,96,68,.18); }
+    .bs-prog { border-color:var(--gold-dim2); color:var(--gold2); background:rgba(201,168,76,.12); }
+    .bs-hot  { border-color:#7a2020; color:#f87171; background:rgba(220,38,38,.12); }
+
+    /* ── EXPANDED BODY ── */
+    .boss-body-outer { border-top:1px solid var(--border2); animation:slideDown .3s ease; }
+    @keyframes slideDown { from{opacity:0;transform:translateY(-8px)} to{opacity:1;transform:translateY(0)} }
+
+    /* ── INNER CARD GRID ── */
+    .boss-card-inner { display:grid; grid-template-columns:260px 1fr; min-height:260px; }
+    @media(max-width:860px){ .boss-card-inner{grid-template-columns:1fr} }
+
+    /* ── IDENTITY PANEL ── */
+    .boss-identity { padding:1.75rem; border-right:1px solid var(--border2);
+      display:flex; flex-direction:column; gap:.85rem;
+      background:linear-gradient(180deg,rgba(74,31,140,.1) 0%,transparent 100%);
+      position:relative; overflow:hidden; }
+    @media(max-width:860px){ .boss-identity{border-right:none;border-bottom:1px solid var(--border2)} }
+    .boss-number { font-family:'Cinzel Decorative',serif; font-size:3.5rem; font-weight:900;
+      color:rgba(255,255,255,.04); position:absolute; bottom:.75rem; right:1rem;
+      line-height:1; pointer-events:none; user-select:none; }
+    .boss-type-badge { display:inline-flex; align-items:center; gap:.35rem;
+      font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.22em;
+      text-transform:uppercase; padding:.22rem .6rem; border:1px solid; width:fit-content; }
+    .type-single { border-color:var(--arcane2); color:var(--shimmer); }
+    .type-dual   { border-color:#c0392b; color:#e74c3c; }
+    .type-triple { border-color:var(--sunwell); color:var(--sunwell); }
+    .type-end    { border-color:var(--gold-dim2); color:var(--gold-light2); }
+    .boss-name { font-family:'Cinzel',serif; font-size:1.2rem; font-weight:700;
+      line-height:1.25; color:var(--gold-light2); }
+    .boss-title-sub { font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--muted); margin-top:-.45rem; }
+    .difficulty-row { display:flex; align-items:center; gap:.7rem; margin-top:auto; }
+    .difficulty-label { font-family:'Cinzel',serif; font-size:.58rem; letter-spacing:.2em;
+      text-transform:uppercase; color:var(--muted); }
+    .difficulty-pips { display:flex; gap:4px; }
+    .pip { width:8px; height:8px; border-radius:50%;
+      background:var(--border2); border:1px solid var(--border2); }
+    .pip.active { background:var(--gold2); border-color:var(--gold2); box-shadow:0 0 5px var(--gold2); }
+    .pip.active.red { background:#e53e3e; border-color:#e53e3e; box-shadow:0 0 5px #e53e3e; }
+
+    /* ── BODY PANEL ── */
+    .boss-body { padding:1.75rem 2rem; display:flex; flex-direction:column; gap:1.3rem; }
+
+    /* ── CORE MECHANIC ── */
+    .core-mechanic { border:1px solid var(--void-purple); background:rgba(74,31,140,.12);
+      padding:1.1rem 1.35rem; position:relative; }
+    .core-mechanic::before { content:'KERNMECHANIK'; position:absolute; top:-.58rem; left:.9rem;
+      background:var(--surface2b); padding:0 .45rem;
+      font-family:'Cinzel',serif; font-size:.53rem; letter-spacing:.32em; color:var(--shimmer); }
+    .core-mechanic p { font-family:'Crimson Pro',serif; color:var(--light2); font-size:.97rem; line-height:1.7; }
+
+    /* ── ALERT ── */
+    .alert { border:1px solid; padding:.85rem 1.2rem; font-family:'Crimson Pro',serif;
+      font-size:.92rem; line-height:1.6; display:flex; gap:.7rem; align-items:flex-start; }
+    .alert-icon { font-size:1.05rem; flex-shrink:0; margin-top:.1rem; }
+    .alert-danger  { border-color:#7a2020; background:rgba(220,38,38,.08); color:#f87171; }
+    .alert-info    { border-color:var(--arcane2); background:rgba(123,63,196,.08); color:var(--shimmer); }
+    .alert-warning { border-color:#b7791f; background:rgba(183,121,31,.08); color:#fbd38d; }
+
+    /* ── ABILITIES ── */
+    .abilities-title { font-family:'Cinzel',serif; font-size:.67rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold2); margin-bottom:.65rem; }
+    .ability-list { display:flex; flex-direction:column; gap:.45rem; }
+    .ability-item { display:flex; gap:.75rem; align-items:flex-start; }
+    .ability-name { font-family:'Cinzel',serif; font-size:.75rem; color:var(--shimmer);
+      font-weight:600; min-width:170px; flex-shrink:0; line-height:1.4; }
+    .ability-desc { font-family:'Crimson Pro',serif; color:var(--muted); line-height:1.5; font-size:.93rem; }
+
+    /* ── ROLE TIPS ── */
+    .role-tips { display:grid; grid-template-columns:repeat(3,1fr);
+      border:1px solid var(--border2); margin-top:.25rem; }
+    @media(max-width:860px){ .role-tips{grid-template-columns:1fr} }
+    .role-tip { padding:.9rem 1.1rem; border-right:1px solid var(--border2); }
+    .role-tip:last-child { border-right:none; }
+    @media(max-width:860px){ .role-tip{border-right:none;border-bottom:1px solid var(--border2)} }
+    @media(max-width:860px){ .role-tip:last-child{border-bottom:none} }
+    .role-tip-label { font-family:'Cinzel',serif; font-size:.56rem; letter-spacing:.28em;
+      text-transform:uppercase; margin-bottom:.35rem; display:flex; align-items:center; gap:.35rem; }
+    .role-dot { width:6px; height:6px; border-radius:50%; flex-shrink:0; }
+    .role-tank .role-tip-label { color:var(--tank); } .role-tank .role-dot { background:var(--tank); }
+    .role-heal .role-tip-label { color:var(--heal); } .role-heal .role-dot { background:var(--heal); }
+    .role-dps  .role-tip-label { color:var(--dps);  } .role-dps  .role-dot { background:var(--dps); }
+    .role-tip p { font-family:'Crimson Pro',serif; color:var(--muted); line-height:1.55; font-size:.88rem; }
+
+    /* ── PHASE BLOCK ── */
+    .phase-block { border:1px solid var(--border2); padding:1.1rem 1.35rem; background:rgba(13,11,24,.8); }
+    .phase-title { font-family:'Cinzel',serif; font-size:.7rem; letter-spacing:.22em;
+      text-transform:uppercase; color:var(--gold2); margin-bottom:.5rem; }
+    .phase-block p { font-family:'Crimson Pro',serif; color:var(--muted); font-size:.95rem; line-height:1.65; }
+
+    /* ── LOOT BOX ── */
+    .loot-box { border:1px solid var(--gold-dim2); background:rgba(212,168,85,.04);
+      padding:1rem 2rem; display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+    .loot-title { font-family:'Cinzel',serif; font-size:.62rem; letter-spacing:.3em;
+      text-transform:uppercase; color:var(--gold2); flex-shrink:0; }
+    .loot-items { display:flex; flex-wrap:wrap; gap:.4rem; }
+    .loot-item { padding:.18rem .65rem; background:rgba(212,168,85,.1);
+      border:1px solid var(--gold-dim2); font-family:'Cinzel',serif;
+      font-size:.65rem; color:var(--gold-light2); letter-spacing:.09em; }
+
+    /* ── OVERVIEW TABLE ── */
+    .overview-table { width:100%; border-collapse:collapse; border:1px solid var(--border2);
+      margin-bottom:3.5rem; font-size:.88rem; }
+    .overview-table th { font-family:'Cinzel',serif; font-size:.6rem; letter-spacing:.28em;
+      text-transform:uppercase; color:var(--gold2); background:var(--surface2b);
+      padding:.75rem 1rem; text-align:left;
+      border-bottom:1px solid var(--border2); border-right:1px solid var(--border2); }
+    .overview-table td { padding:.65rem 1rem; border-bottom:1px solid var(--border2);
+      border-right:1px solid var(--border2); color:var(--light2); vertical-align:middle; }
+    .overview-table tr:last-child td { border-bottom:none; }
+    .overview-table td:last-child,.overview-table th:last-child { border-right:none; }
+    .overview-table tr:hover td { background:rgba(74,31,140,.06); }
+
+    /* ── BOSS GUIDE FOOTER BAR ── */
+    .boss-guide-footer { padding:.9rem 2rem; display:flex; align-items:center;
+      justify-content:space-between; flex-wrap:wrap; gap:.75rem;
+      border-top:1px solid var(--border2); }
+    .boss-guide-tip { font-family:'Crimson Pro',serif; font-style:italic;
+      font-size:.88rem; color:var(--muted); }
+    .ki-deep-btn { font-family:'Cinzel',serif; font-size:.65rem; letter-spacing:.1em;
+      background:linear-gradient(135deg,rgba(123,63,196,.2),rgba(123,63,196,.1));
+      border:1px solid rgba(123,63,196,.4); color:var(--shimmer);
+      padding:.5rem 1.1rem; cursor:pointer; transition:all .2s; border-radius:2px; }
+    .ki-deep-btn:hover { background:rgba(123,63,196,.35); transform:translateY(-1px); }
+
+  </style>
+</head>
+<body>
+<div id="bg"></div>
+<div class="aurora"></div>
+
+<nav>
+  <div class="nav-i">
+    <a href="#" class="logo">
+      <div class="lhex">⚔</div>
+      <div>
+        <span class="lname">Azeroth Chronicle</span>
+        <span class="ltag">WoW Midnight · KI-Live-News · DE</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#news">News</a></li>
+      <li><a href="#guides">Raids <span class="npill">S1</span></a></li>
+      <li><a href="#tier">Tier List</a></li>
+      <li><a href="#patch">Patch</a></li>
+      <li><a href="#ask">KI-Guide <span class="npill">LIVE</span></a></li>
+    </ul>
+    <a href="#guides" class="btn-p">Boss Guides</a>
+  </div>
+</nav>
+
+<div class="ticker" style="margin-top:66px;">
+  <div class="tick-w">
+    <span class="ti">🔥 Patch 12.0.5 „Lingering Shadows" ist LIVE – 21. April 2026</span><span class="ts">✦</span>
+    <span class="ti">⚔ Voidspire: 6 Bosse · Xal'atath als Crown of the Cosmos (Endboss)</span><span class="ts">✦</span>
+    <span class="ti">🏆 Saison 1 endet 4.–5. Mai 2026 – Cutting Edge jetzt noch erreichbar!</span><span class="ts">✦</span>
+    <span class="ti">🧙 Neuer Spec: Devourer Demon Hunter · Void-DPS · Soul-Harvest-Mechaniken</span><span class="ts">✦</span>
+    <span class="ti">🌌 Neu in 12.0.5: Void Assaults · Voidforge · Ritual Sites · Decor Duels</span><span class="ts">✦</span>
+    <span class="ti">📊 S-Tank: Brewmaster Monk · S-Heal: Resto Druid · S-DPS: Aug Evoker + Demo Lock</span><span class="ts">✦</span>
+    <span class="ti">🔥 Patch 12.0.5 „Lingering Shadows" ist LIVE – 21. April 2026</span><span class="ts">✦</span>
+    <span class="ti">⚔ Voidspire: 6 Bosse · Xal'atath als Crown of the Cosmos (Endboss)</span><span class="ts">✦</span>
+    <span class="ti">🏆 Saison 1 endet 4.–5. Mai 2026 – Cutting Edge jetzt noch erreichbar!</span><span class="ts">✦</span>
+    <span class="ti">🧙 Neuer Spec: Devourer Demon Hunter · Void-DPS · Soul-Harvest-Mechaniken</span><span class="ts">✦</span>
+    <span class="ti">🌌 Neu in 12.0.5: Void Assaults · Voidforge · Ritual Sites · Decor Duels</span><span class="ts">✦</span>
+    <span class="ti">📊 S-Tank: Brewmaster Monk · S-Heal: Resto Druid · S-DPS: Aug Evoker + Demo Lock</span><span class="ts">✦</span>
+  </div>
+</div>
+
+<section class="hero">
+  <p class="h-eye">Worldsoul Saga · Kapitel II</p>
+  <h1 class="h-title">WoW: Midnight</h1>
+  <p class="h-sub">Quel'Thalas gegen die Leere</p>
+  <div class="h-live"><span class="ld"></span>Patch 12.0.5 „Lingering Shadows" · LIVE seit 21. April 2026</div>
+  <p class="h-desc">Deutschlands aktuellste WoW-Midnight-Quelle – mit KI-gestütztem Live-News-Feed via Claude API + Web Search, vollständigen Boss-Guides für alle drei Season-1-Raids und der tagesaktuellen Tier-Liste.</p>
+  <div class="h-ctas"><a href="#guides" class="btn-p">Boss Guides</a><a href="#ask" class="btn-g">KI fragen</a></div>
+  <div class="h-scr"><span>Entdecken</span><div class="sl"></div></div>
+</section>
+
+<hr class="gr" />
+
+<!-- NEWS -->
+<section id="news">
+  <div class="c">
+    <div class="sh">
+      <span class="stag">Live · Claude API + Web Search · immer aktuell</span>
+      <h2 class="stitle">Midnight News</h2>
+      <div class="dr"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+    </div>
+    <div class="ai-bar">
+      <div class="ai-b"><span class="ai-d"></span>KI-Live-Feed via Claude + Web Search</div>
+      <span id="ai-status">Lade aktuelle News aus dem Web…</span>
+      <button id="ai-ref" disabled onclick="loadNews()">↺ Aktualisieren</button>
+    </div>
+    <div class="ng" id="news-grid">
+      <div class="nf" style="grid-column:1/-1;background:var(--s2);border:1px solid var(--bd);border-radius:6px;min-height:240px;">
+        <div style="padding:2rem;display:flex;flex-direction:column;gap:.9rem;width:100%;grid-column:1/-1;">
+          <div class="sk" style="height:13px;width:25%;"></div><div class="sk" style="height:26px;width:75%;"></div>
+          <div class="sk" style="height:13px;width:90%;"></div><div class="sk" style="height:13px;width:70%;"></div>
+        </div>
+      </div>
+      <div class="nc" style="background:var(--s2);border:1px solid var(--bd);border-radius:6px;">
+        <div style="min-height:140px;background:var(--s3);"></div>
+        <div style="padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;">
+          <div class="sk" style="height:11px;width:40%;"></div><div class="sk" style="height:17px;width:88%;"></div>
+        </div>
+      </div>
+      <div class="nc" style="background:var(--s2);border:1px solid var(--bd);border-radius:6px;">
+        <div style="min-height:140px;background:var(--s3);"></div>
+        <div style="padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;">
+          <div class="sk" style="height:11px;width:40%;"></div><div class="sk" style="height:17px;width:88%;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ASK AI -->
+    <div class="ap" id="ask">
+      <div class="at">WoW Midnight KI-Assistent – Stell deine Frage</div>
+      <div id="ai-iw">
+        <input type="text" id="ai-in" placeholder='z.B. „S-Tier Klassen in Saison 1?" oder „Xal\'atath Mythic Mechaniken erklären"' />
+        <button id="ai-sb" onclick="askAI()">Fragen</button>
+      </div>
+      <div class="qq">
+        <span class="qb" onclick="setQ('Was ist neu in Patch 12.0.5 Lingering Shadows?')">📋 Patch 12.0.5</span>
+        <span class="qb" onclick="setQ('Welche Klassen sind S-Tier DPS in Midnight Saison 1?')">📊 DPS S-Tier</span>
+        <span class="qb" onclick="setQ('Erkläre die Crown of the Cosmos Xal\\'atath Bossmechaniken auf Mythic')">👑 Xal'atath Mythic</span>
+        <span class="qb" onclick="setQ('Wann endet Season 1 und was kommt in Season 2?')">🗓 Season 2</span>
+        <span class="qb" onclick="setQ('Wie funktioniert der neue Voidforge in 12.0.5?')">⚒ Voidforge</span>
+        <span class="qb" onclick="setQ('Welche M+ Dungeons gibt es in Midnight Season 1?')">🗺 M+ Dungeons</span>
+      </div>
+      <div id="ai-ans"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="gr" />
+
+<!-- BOSS GUIDES -->
+<section id="guides" style="background:linear-gradient(180deg,transparent,rgba(74,31,140,.05),transparent);">
+  <div class="c">
+    <div class="sh">
+      <span class="stag">Season 1 · Alle drei Raids · Vollständige Boss-Taktiken</span>
+      <h2 class="stitle">Boss Guides</h2>
+      <div class="dr"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+      <p style="margin-top:1rem;font-family:'Crimson Pro',serif;font-style:italic;color:var(--muted);font-size:1rem;">Klappe jeden Boss auf für vollständige Taktiken. Der KI-Tiefenguide lädt eine Live-Analyse via Web Search.</p>
+    </div>
+
+    <!-- OVERVIEW -->
+    <table class="overview-table">
+      <thead><tr><th>Raid</th><th>Bosse</th><th>Normal / Heroisch</th><th>Mythic</th><th>Max ilvl</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span style="font-family:'Cinzel',serif;color:var(--gold-light2);">The Voidspire</span></td>
+          <td>6</td><td>18. März 2026</td><td>24. März 2026</td>
+          <td style="color:var(--shimmer);">282</td>
+          <td><span class="boss-status bs-ok">Hall of Fame aktiv</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'Cinzel',serif;color:var(--gold-light2);">The Dreamrift</span></td>
+          <td>2</td><td>17. März 2026</td><td>24. März 2026</td>
+          <td style="color:var(--shimmer);">282</td>
+          <td><span class="boss-status bs-ok">Hall of Fame aktiv</span></td>
+        </tr>
+        <tr>
+          <td><span style="font-family:'Cinzel',serif;color:var(--gold-light2);">March on Quel'Danas</span></td>
+          <td>3</td><td>31. März 2026</td><td>7. April 2026</td>
+          <td style="color:var(--shimmer);">282</td>
+          <td><span class="boss-status bs-hot">Alleria: Mythic-Prog</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- ══════════════ RAID I: THE VOIDSPIRE ══════════════ -->
+    <div class="raid-section">
+      <div class="raid-header">
+        <div class="raid-number">Raid I · Season 1 · Voidstorm-Zone</div>
+        <h2 class="raid-title" style="background:linear-gradient(135deg,var(--gold-light2),var(--shimmer));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">The Voidspire</h2>
+        <div class="raid-meta">
+          <span class="tag tag-purple">Mythic</span>
+          <span class="tag tag-gold">Heroisch</span>
+          <span class="tag tag-gold" style="border-color:rgba(255,255,255,.15);color:var(--muted);">Normal</span>
+          <span class="tag tag-green">Story Mode</span>
+          <span class="tag tag-purple">6 Bosse</span>
+        </div>
+        <p class="raid-lore">Der Voidspire erhebt sich aus dem Herzstück des Voidstorms — einer Region, wo die Leere das Gefüge der Realität selbst durchbrochen hat. Xal'atath wartet auf dem Gipfel.</p>
+      </div>
+      <div class="boss-grid">
+
+        <!-- BOSS 1 -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">1</span>
+              <div class="boss-toggle-info">
+                <h3>Imperator Averzian</h3>
+                <small>Arkonischer Feldherr · 9-Felder-Grid-Arena · Einstiegs-Boss</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">01</div>
+                <span class="boss-type-badge type-single">● Einzelboss</span>
+                <div class="boss-name">Imperator Averzian</div>
+                <div class="boss-title-sub">Arkonischer Feldherr der Leere</div>
+                <div class="difficulty-row">
+                  <span class="difficulty-label">Schwierigkeit</span>
+                  <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></div>
+                </div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Averzian kämpft in einer 9-Felder-Grid-Arena. Er beansprucht permanent Felder mit <em>Shadow's Advance</em> — einmal verloren, dauerhaft weg. Der Kampfraum schrumpft konstant. Adds sofort töten bevor weitere Felder blockiert werden.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Shadow's Advance</span><span class="ability-desc">Beansprucht dauerhaft 1–2 Arena-Felder. Pacing bestimmt wie schnell die Arena schrumpft.</span></div>
+                    <div class="ability-item"><span class="ability-name">Void Claimed</span><span class="ability-desc">Debuff auf zufälligen Spieler. Betritt er ein beanspruchtes Feld explodiert der Debuff als Raid-weiter Schaden.</span></div>
+                    <div class="ability-item"><span class="ability-name">Dark Tears</span><span class="ability-desc">Spawnt 3–4 Void-Adds. Sofort cleaven — jeder überlebende Add beschleunigt Shadow's Advance drastisch.</span></div>
+                    <div class="ability-item"><span class="ability-name">Umbral Collapse</span><span class="ability-desc">Raid-weiter Soak: Alle stacken um Schaden zu teilen. Tanks sterben im Solo-Soak.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Averzian vom Raid wegrotieren. Swap bei 3 Stacks Shadow Mark. Bei Umbral Collapse sofort zum Raid stacken.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Starke Raid-Heals für Umbral Collapse vorhalten. Void Claimed präventiv heilen. CDs für Add-Phasen reservieren.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Dark Tears sind Prio 1 — immer sofort switchen. Bei Umbral Collapse alles droppen und stacken.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Void Plate Shoulders</span><span class="loot-item">Arcane Signet Ring</span><span class="loot-item">Fractured Cosmos Trinket</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Nummeriert die 9 Arena-Felder. Boss immer zur Mitte — so bleibt maximal lange Platz.</span><button class="ki-deep-btn" onclick="openBoss('Imperator Averzian','Arkonischer Feldherr · 9-Felder-Grid-Arena · Boss 1/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- BOSS 2 -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">2</span>
+              <div class="boss-toggle-info">
+                <h3>Vorasius</h3>
+                <small>Abyssale Void-Bestie · Formwechsel alle 45 Sek. · Tier-Set-Drop</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">02</div>
+                <span class="boss-type-badge type-single">● Einzelboss</span>
+                <div class="boss-name">Vorasius</div>
+                <div class="boss-title-sub">Abyssaler Void-Wächter</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Vorasius wechselt alle 45 Sek. zwischen <em>Void Form</em> (AoE-lastig, Spawns) und <em>Crush Form</em> (Singletarget-Nuke). Jeder Übergang triggert <em>Abyssal Roar</em> — ein Raid-weiter Treffer, für den Heiler gecooldownt sein müssen.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Void Tentacles</span><span class="ability-desc">3 Tentakel fixieren zufällige Spieler. Betäubung wenn nicht in 8 Sek. getötet.</span></div>
+                    <div class="ability-item"><span class="ability-name">Abyssal Slam</span><span class="ability-desc">Massiver Tank-Nuke in Crush Form. Swap nach jedem Slam — zweiter Stack ohne CD ist tödlich.</span></div>
+                    <div class="ability-item"><span class="ability-name">Abyssal Roar</span><span class="ability-desc">80% Max-HP Schaden auf alle beim Formwechsel. Raid-Cooldown ist Pflicht.</span></div>
+                    <div class="ability-item"><span class="ability-name">Corruption Swarm</span><span class="ability-desc">Void-Blasen über den Boden. Spreizen und langsam bewegen — keine hektischen Richtungswechsel.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Swap nach jedem Abyssal Slam. Aktiver Tank in Crush Form immer CD bereithalten. Off-Tank sammelt Tentakel.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Raid-CDs auf jeden Abyssal Roar. In Void Form HoTs vorab stacken. Tanks in Crush Form priorisieren.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Tentakel Prio 1 — immer. Void Form Cleave maximieren. Corruption Swarm-Pfützen nie durch andere Spieler ziehen.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Tier-35 Token (Schultern/Handschuhe)</span><span class="loot-item">Abyssal Chain Belt</span><span class="loot-item">Void-Touched Cloak</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Plant vor dem Pull welcher CD auf welchen Roar geht. WeakAura-Notizen nutzen.</span><button class="ki-deep-btn" onclick="openBoss('Vorasius','Void-Bestie · Formwechsel · Boss 2/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- BOSS 3 -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">3</span>
+              <div class="boss-toggle-info">
+                <h3>Fallen-King Salhadaar</h3>
+                <small>Untoter Elfenkönig · Phantom-Phase bei 50% HP · Tier-Set-Drop</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">03</div>
+                <span class="boss-type-badge type-single">● Einzelboss</span>
+                <div class="boss-name">Fallen-King Salhadaar</div>
+                <div class="boss-title-sub">Hochelf-König der Damnation</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Bei 50% HP beschwört Salhadaar sein <em>Phantom-Ich</em> — eine exakte Kopie. Beide müssen innerhalb 20 Sek. auf unter 1% HP fallen, sonst heilt das Original auf 100% zurück. Perfekte Split-DPS-Koordination entscheidet.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Undying Armor</span><span class="ability-desc">Absorb-Shield alle 60 Sek. In 8 Sek. durch Burst brechen — sonst +20% HP Heilung.</span></div>
+                    <div class="ability-item"><span class="ability-name">Spectral Strike</span><span class="ability-desc">Frontal-Cleave auf Tank. Sofortiger Swap nach jedem Treffer.</span></div>
+                    <div class="ability-item"><span class="ability-name">Soul Shatter</span><span class="ability-desc">3 Spieler markiert: Spreizen auf mind. 8m. Überlappung = 150% Schaden auf beide.</span></div>
+                    <div class="ability-item"><span class="ability-name">Phantom Ascension (P2)</span><span class="ability-desc">Phantom erscheint bei 50%. 20-Sek.-Berserk wenn nicht gleichzeitig getötet. Raid splitten.</span></div>
+                  </div>
+                </div>
+                <div class="phase-block">
+                  <div class="phase-title">⚡ Phase 2 – Phantom Ascension (50% HP)</div>
+                  <p>Raid in zwei gleichwertige Gruppen aufteilen. RL zählt „3-2-1" wenn beide unter 3% sind. Lust erst zu Phase 2-Beginn. Off-Tank übernimmt Phantom mit identischer Spielweise.</p>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Sofortige Spectral Strike-Swaps. P2: Off-Tank übernimmt Phantom. Beide CDs beim gleichzeitigen Kill.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Undying Armor-Burst verfolgen. Soul Shatter-Marker identifizieren und Spieler auseinanderschicken.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Undying Armor brechen ist Pflicht. Phase 2: Ziel nur auf RL-Kommando wechseln.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Tier-35 Token (Helm/Brust)</span><span class="loot-item">Phantom King's Scepter</span><span class="loot-item">Damnation Rune Boots</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Bloodlust bei Phase 2-Beginn — nicht beim Pull. Maximale Uptime auf beide Ziele gleichzeitig.</span><button class="ki-deep-btn" onclick="openBoss('Fallen-King Salhadaar','Untoter Elfenkönig · Phantom bei 50% · Boss 3/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- BOSS 4 -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">4</span>
+              <div class="boss-toggle-info">
+                <h3>Vaelgor &amp; Ezzorak</h3>
+                <small>Void-Zwillingsduo · gleichzeitiger Kill erforderlich · Tier-Set-Drop</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">04</div>
+                <span class="boss-type-badge type-dual">⚔ Dual-Boss</span>
+                <div class="boss-name">Vaelgor &amp; Ezzorak</div>
+                <div class="boss-title-sub">Void-Zwillingsprinzen der Finsternis</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Vaelgor (physisch) und Ezzorak (arkan) teilen einen HP-Pool, müssen aber immer innerhalb 15m stehen. Zu weit entfernt: <em>Void Link</em> bricht — permanenter +50% Schaden-Buff für beide. Beide müssen innerhalb 5 Sek. gleichzeitig sterben.</p>
+                </div>
+                <div class="alert alert-danger"><span class="alert-icon">⚠</span><span>Tötet Vaelgor zuerst: Ezzorak geht sofort in Berserk. Immer gleichzeitig auf &lt;1% bringen, dann Kill-Signal!</span></div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Void Link</span><span class="ability-desc">Reißt bei &gt;15m. +50% Schaden-Buff für beide, steigt pro Sekunde.</span></div>
+                    <div class="ability-item"><span class="ability-name">Chaos Leap (Vaelgor)</span><span class="ability-desc">Springt auf Fernkampf-Ziel, hinterlässt AoE-Pool. Ziel läuft aus dem Raid raus.</span></div>
+                    <div class="ability-item"><span class="ability-name">Arcane Volley (Ezzorak)</span><span class="ability-desc">5 Wellen auf 5 Spieler. Interrupt wo möglich, sonst ausweichen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Twin Devastation</span><span class="ability-desc">Simultaner Angriff beider Bosse. Beide Tanks brauchen gleichzeitig Cooldowns.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Bosse immer &lt;12m halten. Twin Devastation: simultane CDs im Voice koordinieren.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Twin Devastation ist der härteste Heal-Check. Chaos Leap-Ziele sofort heilen — landen mit &lt;30% HP.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>HP beider Bosse tracken. Vor Kill: Ezzorak auf identische HP wie Vaelgor bringen. Cleave maximieren.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Tier-35 Token (Beine/Schultern)</span><span class="loot-item">Twin Void Sword</span><span class="loot-item">Ezzorak's Arcane Focus</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: WeakAura mit beiden HP-Balken nebeneinander. RL ruft bei &lt;5%: „Hold Vaelgor!" bis Ezzorak aufgeholt hat.</span><button class="ki-deep-btn" onclick="openBoss('Vaelgor und Ezzorak','Void-Zwillingsduo · gleichzeitiger Kill · Boss 4/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- BOSS 5 -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">5</span>
+              <div class="boss-toggle-info">
+                <h3>Lightblinded Vanguard</h3>
+                <small>Dreifach-Boss · Aelar / Miriath / Voss · Lightbond-Mechanik · Tier-Set-Drop</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">05</div>
+                <span class="boss-type-badge type-triple">▲ Triple-Boss</span>
+                <div class="boss-name">Lightblinded Vanguard</div>
+                <div class="boss-title-sub">Drei korrupte Lichtträger der Allianz</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Drei Bosse: <em>Aelar</em> (Paladin), <em>Miriath</em> (Priest), <em>Voss</em> (Hunter). Kommen zwei innerhalb 10m: aktiviert <em>Lightbond</em> — gegenseitige Heilung auf 5% HP/Sek. Split-Tanking über den gesamten Raum ist zwingend erforderlich.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Lightbond</span><span class="ability-desc">Heilung bei Nähe zweier Bosse. Durch Tanking &gt;15m auseinander permanent verhindern.</span></div>
+                    <div class="ability-item"><span class="ability-name">Holy Wrath (Aelar)</span><span class="ability-desc">Paladin-Burst: 3× Hammer auf zufällige Spieler. Interrupt hat Prio.</span></div>
+                    <div class="ability-item"><span class="ability-name">Blinding Flash (Miriath)</span><span class="ability-desc">AoE-Blind: 3 Sek. Desorientierung im 8m Radius. Vorab rausgehen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Void Arrow Barrage (Voss)</span><span class="ability-desc">6 Pfeile auf 6 Spieler gleichzeitig. Nicht ausweichbar — heal-intensive Phase.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>3-Tank-Setup empfohlen. 2-Tank: Off-Tank wechselt blitzschnell zwischen Aelar und Voss. Lightbond niemals aktiv lassen.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Barrage ist der härteste Heal-Moment. Blinding Flash vorhersehen — nicht reaktiv bewegen.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Kill-Reihenfolge: Miriath → Aelar → Voss. Holy Wrath immer interrupten — Melee hat Prio.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Tier-35 Token (Helm/Handschuhe)</span><span class="loot-item">Voss' Corrupted Quiver</span><span class="loot-item">Aelar's Blind Justice Plate</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Jeden Tank mit Raid-Icon markieren. Der Raid muss immer wissen wo welcher Boss ist.</span><button class="ki-deep-btn" onclick="openBoss('Lightblinded Vanguard','Dreifach-Boss Aelar+Miriath+Voss · Boss 5/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- BOSS 6 – ENDBOSS -->
+        <details class="boss-card" style="background:linear-gradient(180deg,rgba(74,31,140,.1),var(--abyss));">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number" style="color:var(--gold2);">6</span>
+              <div class="boss-toggle-info">
+                <h3 style="color:var(--gold-light2);">Crown of the Cosmos – Xal'atath</h3>
+                <small>Void-Gottheit · 3 Phasen · Endboss · Mythic Hall of Fame aktiv</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span></div>
+              <span class="boss-status bs-hot">Mythic offen</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity" style="background:linear-gradient(180deg,rgba(139,69,255,.2) 0%,rgba(212,168,85,.05) 100%);">
+                <div class="boss-number">06</div>
+                <span class="boss-type-badge type-end">★ Endboss</span>
+                <div class="boss-name" style="color:var(--gold-light2);">Crown of the Cosmos</div>
+                <div class="boss-title-sub">Xal'atath – Apotheose der Leere</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic" style="border-color:var(--gold-dim2);background:rgba(212,168,85,.06);">
+                  <p>Drei Phasen mit 8-Minuten-Enrage. P1 (100–70%): Void-Pfützen-Management. P2 (70–40%): Kosmischer Raum — Anti-Gravitations-Puzzles. P3 (40–0%): <em>Eternal Midnight</em> — alle Mechaniken überlagern sich, plus Void Shroud (globaler Silence alle 45 Sek.).</p>
+                </div>
+                <div class="alert alert-info"><span class="alert-icon">ℹ</span><span>Lust bei P3-Übergang (40%). Enrage: 8 Min. Echo und Liquid: 200+ Mythic-Versuche. Gilt als härtester Encounter seit Jailer.</span></div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Void Corruption (P1)</span><span class="ability-desc">Wachsende Pfützen. Präzise am Rand platzieren — zu viele macht die Arena unspielbar.</span></div>
+                    <div class="ability-item"><span class="ability-name">Cosmic Gravity (P2)</span><span class="ability-desc">Hebt 5 Spieler in die Luft. Spezial-Orbs sammeln um zurückzukehren — 12 Sek. Fenster.</span></div>
+                    <div class="ability-item"><span class="ability-name">Eternal Midnight (P3)</span><span class="ability-desc">Alle P1+P2 Mechaniken gleichzeitig. Void Shroud alle 45 Sek. — Heiler müssen anticyclen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Harbinger's Wrath</span><span class="ability-desc">Tank-Debuff-Stack: Bei 5 Stacks sofortiger Tod. Swap alle 20–25 Sek. absolut kritisch.</span></div>
+                  </div>
+                </div>
+                <div class="phase-block">
+                  <div class="phase-title">⚡ Phase 3 – Eternal Midnight (40% HP)</div>
+                  <p>Alle vorherigen Mechaniken überlagern sich. Void Shroud alle 45 Sek. — Heal-CDs müssen um den Silence herum gecyclet werden. Cosmic Gravity-Spieler haben 12 Sek. Fenster. Enrage-Timer lässt keine Fehler zu.</p>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Harbinger's Wrath bei 4 Stacks swappen. In P3 immer zentral bleiben — nie in Pfützen-Cluster.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Void Shroud-Timing auswendig lernen — pre-caste HoTs vor dem Silence. P3: mind. 3 Heiler.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Kein GCD verschwenden. Cosmic Gravity-Orbs aufsammeln ohne DPS-Fenster zu verlieren.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box" style="border-color:var(--gold-dim2);"><span class="loot-title">🎁 Endboss-Loot</span><div class="loot-items"><span class="loot-item">Tier-35 Token (alle Slots)</span><span class="loot-item">Xal'atath's Void Scepter</span><span class="loot-item">Crown of the Cosmos Helm</span><span class="loot-item" style="color:var(--gold-light2);">282 ilvl Mythic</span><span class="loot-item" style="border-color:#c0392b;color:#e74c3c;">Cutting Edge</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: P1+P2 auf Heroisch trainieren bis sie sitzen. Mythic P3 fügt nur Schichtung hinzu — die Mechaniken sind identisch.</span><button class="ki-deep-btn" onclick="openBoss('Crown of the Cosmos Xal atath','Endboss · 3 Phasen · Eternal Midnight · Boss 6/6 The Voidspire')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+      </div><!-- /.boss-grid Voidspire -->
+    </div><!-- /.raid-section Voidspire -->
+
+
+    <!-- ══════════════ RAID II: THE DREAMRIFT ══════════════ -->
+    <div class="raid-section">
+      <div class="raid-header">
+        <div class="raid-number">Raid II · Season 1 · Emerald Dream</div>
+        <h2 class="raid-title" style="background:linear-gradient(135deg,#68d391,var(--shimmer));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">The Dreamrift</h2>
+        <div class="raid-meta">
+          <span class="tag tag-purple">Mythic</span>
+          <span class="tag tag-gold">Heroisch</span>
+          <span class="tag tag-gold" style="border-color:rgba(255,255,255,.15);color:var(--muted);">Normal</span>
+          <span class="tag tag-purple">2 Bosse</span>
+        </div>
+        <p class="raid-lore">Ein Riss im Smaragdgrünen Traum — verursacht durch Xal'ataths Einfluss. Belo'ren, einst Hüter des Traums, kämpft als verstümmelte Version seiner selbst.</p>
+      </div>
+      <div class="boss-grid">
+
+        <!-- D1: Chimaerus -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">1</span>
+              <div class="boss-toggle-info">
+                <h3>Chimaerus</h3>
+                <small>Traumwelt-Chimäre · 3 Traumformen: Drache / Löwe / Schlange</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">01</div>
+                <span class="boss-type-badge type-single">● Einzelboss</span>
+                <div class="boss-name">Chimaerus</div>
+                <div class="boss-title-sub">Korrumpierter Wächter des Traums</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Chimaerus wechselt bei 66% und 33% HP die <em>Traumform</em>: Drachen-Form (AoE, Frontal-Breath), Löwen-Form (Leap + Dream Shards als Burn-Fenster), Schlangen-Form (DoT-intensiv, Venom Cascade). Jede Form erfordert andere Positionierung.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Dream Breath (Drache)</span><span class="ability-desc">180°-Frontal-Kegel. Tank dreht Chimaerus vom Raid weg. Getroffene Spieler sofort heilen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Dream Pounce (Löwe)</span><span class="ability-desc">Springt auf Fernkampf-Ziel. Hinterlässt Dream Shard — innerhalb 6 Sek. aktivieren für Burn-Fenster.</span></div>
+                    <div class="ability-item"><span class="ability-name">Venom Cascade (Schlange)</span><span class="ability-desc">Naturschaden-DoTs auf ganzen Raid, stackt bis 5×. Dispel-Rotation koordinieren.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Drachen-Form: immer vom Raid wegdrehen. Löwen-Form: hohe Mobilität nach Teleport. Schlangen-Form: normale Tankplay.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Schlangen-Form ist härteste Healphase. Dispel-Rotation koordinieren — nie alle gleichzeitig dispellen.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Dream Shards sofort nach Löwen-Pounce aktivieren — Burn-Fenster nutzen. Drachen-Form: nie vor Tank stehen.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Dream-Scale Chestplate</span><span class="loot-item">Chimaerus Fang Dagger</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Fernkämpfer in Löwen-Form leicht staffeln — nie alle in einem Cluster für Dream Pounce.</span><button class="ki-deep-btn" onclick="openBoss('Chimaerus','Traumwelt-Chimäre · 3 Traumformen · Boss 1/2 The Dreamrift')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- D2: Belo'ren -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">2</span>
+              <div class="boss-toggle-info">
+                <h3>Belo'ren</h3>
+                <small>Korrupter Traumwächter · Dreamshatter-Split · Endboss The Dreamrift</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">02</div>
+                <span class="boss-type-badge type-end">★ Endboss</span>
+                <div class="boss-name">Belo'ren</div>
+                <div class="boss-title-sub">Wächter des zerstörten Traums</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p><em>Dreamshatter</em> spaltet die Arena in Traumseite und Alptraumseite. Hälfte des Raids kämpft auf jeder Seite — unterschiedliche Mechaniken, unterschiedlicher Druck. Auf Traumseite heilt sich Belo'ren via Dream Restoration; auf Alptraumseite pulsiert er alle 12 Sek.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Dreamshatter</span><span class="ability-desc">Teilt Arena. Traumseite: niedrigerer Druck, Orb-Interrupt. Alptraumseite: hoher Schaden, Pulse.</span></div>
+                    <div class="ability-item"><span class="ability-name">Dream Restoration</span><span class="ability-desc">Belo'ren heilt sich auf Traumseite. Spieler müssen Orbs einsammeln um es zu unterbrechen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Nightmare Pulse</span><span class="ability-desc">Starker Schlag auf alle Alptraum-Spieler alle 12 Sek. Stärkster Heiler muss auf Alptraumseite.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Main-Tank bei Belo'ren. Bei Dreamshatter: Off-Tank auf Alptraumseite. Nightmare-Tank braucht stärkere CDs.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Mindestens ein Heiler pro Seite. Nightmare-Heiler ist kritisch — Pulse alle 12 Sek. Stärksten Heiler dort.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Traumseite: Restoration-Orbs unterbrechen — kein DPS-Verlust ist teurer. Alptraumseite: survivability über parse.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">Belo'ren's Dreamweave Staff</span><span class="loot-item">Nightmare Veil Cloak</span><span class="loot-item">Dreamrift Signet</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Stärksten DPS + stärksten Heiler auf Alptraumseite. Traumseite ist verzeihender — dort lernen Einsteiger.</span><button class="ki-deep-btn" onclick="openBoss('Beloren','Korrupter Traumwächter · Dreamshatter · Endboss The Dreamrift')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+      </div><!-- /.boss-grid Dreamrift -->
+    </div><!-- /.raid-section Dreamrift -->
+
+
+    <!-- ══════════════ RAID III: MARCH ON QUEL'DANAS ══════════════ -->
+    <div class="raid-section">
+      <div class="raid-header">
+        <div class="raid-number">Raid III · Season 1 · Quel'Danas · Hall of Fame schließt bald!</div>
+        <h2 class="raid-title" style="background:linear-gradient(135deg,var(--gold-light2),#f87171);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">March on Quel'Danas</h2>
+        <div class="raid-meta">
+          <span class="tag tag-purple">Mythic</span>
+          <span class="tag tag-gold">Heroisch</span>
+          <span class="tag tag-gold" style="border-color:rgba(255,255,255,.15);color:var(--muted);">Normal</span>
+          <span class="tag tag-red">3 Bosse</span>
+          <span class="tag tag-red">Hall of Fame aktiv!</span>
+        </div>
+        <p class="raid-lore">Die Leere marschiert auf Quel'Danas. Alleria Windrunner führt die letzten Verteidiger der Sunwell an. Xal'atath will sie ein für alle Mal auslöschen.</p>
+      </div>
+      <div class="boss-grid">
+
+        <!-- Q1: L'ura -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number">1</span>
+              <div class="boss-toggle-info">
+                <h3>L'ura</h3>
+                <small>Void-Gottheit der Vergangenheit · Echo-Mechanik · Zeitmanipulation</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div>
+              <span class="boss-status bs-ok">Guide Live</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">01</div>
+                <span class="boss-type-badge type-single">● Einzelboss</span>
+                <div class="boss-name">L'ura</div>
+                <div class="boss-title-sub">Void-Gottheit · Schatten der Vergangenheit</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>L'ura bringt <em>Echos vergangener Schlachten</em> in die Gegenwart — Kopien mit 25% HP, aber identischen Fähigkeiten. Mit steigendem Fortschritt spawnen immer mehr Echos gleichzeitig. Werden sie nicht in 15 Sek. getötet, erhält L'ura permanente Schaden-Buffs via <em>Temporal Surge</em>.</p>
+                </div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Echo of the Past</span><span class="ability-desc">Spawnt 1–4 historische Void-Echos. Müssen in 15 Sek. getötet werden bevor Temporal Surge einsetzt.</span></div>
+                    <div class="ability-item"><span class="ability-name">Temporal Surge</span><span class="ability-desc">+20% Schaden-Buff permanent pro verpasstem Echo. Stackt — 3 verpasste Echos sind Wipe-Bedingung.</span></div>
+                    <div class="ability-item"><span class="ability-name">Void Convergence</span><span class="ability-desc">Zieht alle zur Mitte. Direkt danach Void Explosion — sofort auseinanderlaufen nach dem Pull.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>L'ura zentral halten. Echos werden vom Off-Tank gebündelt für AoE. Bei Void Convergence: Boss nicht loslassen.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Void Convergence + Explosion ist der kritische Heal-Moment. Raid-CDs genau dafür reservieren.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Echos sind absolute Prio — Temporal Surge-Stacks sind DPS-Kill. Cleave-Specs haben massiven Vorteil.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Loot</span><div class="loot-items"><span class="loot-item">L'ura's Void Shard</span><span class="loot-item">Temporal Echo Bracers</span><span class="loot-item">253–282 ilvl</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: 3–4 dedicierte Echo-Killer assignen (hohe Burst-AoE). Rest bleibt auf L'ura. Keybind für Switch vorbereiten.</span><button class="ki-deep-btn" onclick="openBoss('Lura','Void-Gottheit · Echo-Mechanik · Boss 1/3 March on Quel Danas')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- Q2: Midnight Falls -->
+        <details class="boss-card" style="background:linear-gradient(180deg,rgba(139,69,255,.07),var(--abyss));">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number" style="color:var(--shimmer);">2</span>
+              <div class="boss-toggle-info">
+                <h3>Midnight Falls – Xal'atath</h3>
+                <small>Void-Apotheose · Sunwell Collapse · Saisonendboss</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span></div>
+              <span class="boss-status bs-hot">Hall of Fame</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity" style="background:linear-gradient(180deg,rgba(139,69,255,.2) 0%,transparent 100%);">
+                <div class="boss-number">02</div>
+                <span class="boss-type-badge" style="border-color:var(--shimmer);color:var(--shimmer);">★ Saisonendboss</span>
+                <div class="boss-name">Midnight Falls</div>
+                <div class="boss-title-sub">Xal'atath — vollständige Void-Apotheose</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span><span class="pip active red"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic" style="border-color:rgba(139,69,255,.5);background:rgba(139,69,255,.1);">
+                  <p>Bei 50% HP bricht der <em>Sunwell Collapse</em> die Realität. Hälfte des Raids kämpft im normalen Raum, Hälfte im Void-Spiegelraum. <em>Void Mirroring</em> spiegelt Ereignisse 3 Sek. zeitverzögert — die physische Gruppe positioniert sich nach Void-Meldungen.</p>
+                </div>
+                <div class="alert alert-danger"><span class="alert-icon">⚠</span><span>Gilt als härtester Saisonboss seit Sylvanas. Echo und Liquid: 200+ Mythic-Versuche. Heroisch ist deutlich zugänglicher — dort zuerst lernen!</span></div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Sunwell Collapse</span><span class="ability-desc">Bei 50%: Arena teilt sich. Spieler werden zufällig Dimensionen zugewiesen. Voice-Kommunikation ist Pflicht.</span></div>
+                    <div class="ability-item"><span class="ability-name">Void Mirroring</span><span class="ability-desc">Mechanic in Void-Dim spiegelt sich 3 Sek. später. Physische Gruppe positioniert sich nach Void-Meldungen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Eternal Darkness</span><span class="ability-desc">Enrage wenn Sunwell-HP auf 0 fällt. Spieler halten Sunwell durch spezielle Interaktionen am Leben.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Main-Tank im physischen Raum. Bei Collapse: Off-Tank übernimmt Void-Dimension-Aggro. Beide synchronisieren Swaps.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Mindestens ein Heiler pro Dimension. Void-Dim-Heiler hat mehr Druck — stärksten Heiler dort einsetzen.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Sunwell-Interaktionen absolute Prio. Void Mirroring-Meldungen aktiv im Voice kommunizieren.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Saisonendboss-Loot</span><div class="loot-items"><span class="loot-item">Xal'atath's Void Crown</span><span class="loot-item">Sunwell's Last Light Scepter</span><span class="loot-item">Eternal Darkness Cloak</span><span class="loot-item" style="color:var(--gold-light2);">282 ilvl Mythic</span><span class="loot-item" style="border-color:#c0392b;color:#e74c3c;">Season 1 Mount</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Komplett auf Heroisch durchspielen bis P2 sitzt. Mythic fügt nur Komplexität hinzu — Grundmechaniken identisch.</span><button class="ki-deep-btn" onclick="openBoss('Midnight Falls Xalatath','Void-Apotheose · Sunwell Collapse · Saisonendboss · Boss 2/3 March on Quel Danas')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+        <!-- Q3: Alleria -->
+        <details class="boss-card">
+          <summary class="boss-toggle">
+            <div class="boss-toggle-left">
+              <span class="boss-toggle-number" style="color:var(--gold2);">3</span>
+              <div class="boss-toggle-info">
+                <h3 style="color:var(--gold-light2);">Alleria Windrunner</h3>
+                <small>Licht-Arkane Heldin · Void Manifestation-Encounter · Mythic in Progression</small>
+              </div>
+            </div>
+            <div class="boss-toggle-right">
+              <div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active red"></span></div>
+              <span class="boss-status bs-prog">Mythic-Prog</span>
+              <span class="chevron">▼</span>
+            </div>
+          </summary>
+          <div class="boss-body-outer">
+            <div class="boss-card-inner">
+              <div class="boss-identity">
+                <div class="boss-number">03</div>
+                <span class="boss-type-badge type-end">★ Heroischer Endboss</span>
+                <div class="boss-name" style="color:var(--gold-light2);">Alleria Windrunner</div>
+                <div class="boss-title-sub">Heldin des Lichts und der Arkanie</div>
+                <div class="difficulty-row"><span class="difficulty-label">Schwierigkeit</span><div class="difficulty-pips"><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active"></span><span class="pip active red"></span></div></div>
+              </div>
+              <div class="boss-body">
+                <div class="core-mechanic">
+                  <p>Alleria ist <em>kein Feind</em> — sie kämpft gegen den Void-Einfluss in ihr. <em>Void Manifestations</em> (schwarze Kopien mit lila Aura) töten, ohne Alleria selbst zu beschädigen (goldene Aura). Falsche Ziele treffen gibt 10 Void-Energie. Bei 100: Wipe.</p>
+                </div>
+                <div class="alert alert-info"><span class="alert-icon">ℹ</span><span>Konzeptuell einzigartiger WoW-Encounter. Top-Guilds erwarten 3–4 Wochen Mythic-Prog. Aura-Identifikation (lila vs. gold) ist der Skill-Check.</span></div>
+                <div>
+                  <div class="abilities-title">Schlüssel-Fähigkeiten</div>
+                  <div class="ability-list">
+                    <div class="ability-item"><span class="ability-name">Void Manifestation</span><span class="ability-desc">Schwarze Alleria-Kopien mit lila Aura. Nur diese töten! Goldene Aura = echte Alleria = niemals angreifen.</span></div>
+                    <div class="ability-item"><span class="ability-name">Void Corruption</span><span class="ability-desc">+10 Void-Energie pro falsch angegriffenem Ziel. Bei 100: Wipe. Ursache Nr. 1 für Progression-Wipes.</span></div>
+                    <div class="ability-item"><span class="ability-name">Light's Sacrifice</span><span class="ability-desc">Alleria opfert HP um Spieler zu retten. Passiert sie 30% HP: Endboss-Phase beginnt sofort.</span></div>
+                    <div class="ability-item"><span class="ability-name">Arcane Sundering</span><span class="ability-desc">Massiver Lichtschlag auf aktiven Tank — 40% Max-HP. Cooldown pflicht für jeden Treffer.</span></div>
+                  </div>
+                </div>
+                <div class="role-tips">
+                  <div class="role-tip role-tank"><div class="role-tip-label"><span class="role-dot"></span>Tank</div><p>Alleria zentral halten. Off-Tank markiert und sammelt Void Manifestations an. Arcane Sundering: immer Cooldown nutzen.</p></div>
+                  <div class="role-tip role-heal"><div class="role-tip-label"><span class="role-dot"></span>Heiler</div><p>Light's Sacrifice-Ereignisse tracken. Alleria's HP-Balken überwachen — bei &lt;40% defensiv spielen.</p></div>
+                  <div class="role-tip role-dps"><div class="role-tip-label"><span class="role-dot"></span>DPS</div><p>Lila Aura = töten. Goldene Aura = niemals angreifen. Nameplates in WoW-Optionen auf Maximum stellen.</p></div>
+                </div>
+              </div>
+            </div>
+            <div class="loot-box"><span class="loot-title">🎁 Heroischer Endboss-Loot</span><div class="loot-items"><span class="loot-item">Alleria's Void-Touched Longbow</span><span class="loot-item">Windrunner's Voidforged Mantle</span><span class="loot-item">Light's Last Stand Ring</span><span class="loot-item" style="color:var(--gold-light2);">269–282 ilvl</span><span class="loot-item" style="border-color:var(--gold-dim2);color:var(--gold2);">Ahead of the Curve</span></div></div>
+            <div class="boss-guide-footer"><span class="boss-guide-tip">Pro-Tipp: Plater-Addon mit custom Aura-Farbregel: lila = immer töten, gold = niemals angreifen. Die Identifikation ist der gesamte Encounter.</span><button class="ki-deep-btn" onclick="openBoss('Alleria Windrunner','Void Manifestation-Encounter · Mythic-Progression · Boss 3/3 March on Quel Danas')">🔮 KI-Tiefenguide</button></div>
+          </div>
+        </details>
+
+      </div><!-- /.boss-grid March -->
+    </div><!-- /.raid-section March -->
+
+  </div>
+</section>
+
+<!-- TIER LIST -->
+<section id="tier">
+  <div class="c">
+    <div class="sh">
+      <span class="stag">Post-Patch 12.0.5 · Saison 1 · Archon.gg + Warcraft Logs</span>
+      <h2 class="stitle">Klassen Tier List</h2>
+      <div class="dr"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+      <p style="margin-top:.9rem;font-family:'Crimson Pro',serif;font-style:italic;color:var(--rg-muted);font-size:.97rem;">
+        Six Wochen Season, drei Balance-Patches — die Meta hat sich stabilisiert.
+      </p>
+    </div>
+
+    <!-- PATCH BADGE -->
+    <div style="text-align:center;margin-bottom:1.75rem;">
+      <span style="display:inline-flex;align-items:center;gap:.5rem;padding:.32rem .95rem;border:1px solid var(--gold-d);background:rgba(212,168,85,.07);font-family:'Cinzel',serif;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-l);">
+        ⚖ Stand: Patch 12.0.5 · 21. April 2026 · Aktiv gepflegt
+      </span>
+    </div>
+
+    <!-- TAB BAR -->
+    <div class="tl-tabs">
+      <button class="tl-tab active" onclick="tlTab('tank',this)">🛡 Tanks</button>
+      <button class="tl-tab" onclick="tlTab('heal',this)">💚 Heiler</button>
+      <button class="tl-tab" onclick="tlTab('dps',this)">⚔ DPS</button>
+    </div>
+
+    <!-- TIER LEGEND STRIP -->
+    <div class="tl-strip">
+      <div class="tl-cell"><div class="tl-cell-ltr" style="color:var(--tl-s);">S</div><div class="tl-cell-desc">Meta-definierend — beste Wahl für Progression</div></div>
+      <div class="tl-cell"><div class="tl-cell-ltr" style="color:var(--tl-ap);">A+</div><div class="tl-cell-desc">Top-Gruppe tauglich — starke Allrounder</div></div>
+      <div class="tl-cell"><div class="tl-cell-ltr" style="color:var(--tl-a);">A</div><div class="tl-cell-desc">Voll lebensfähig — geringer Abstand zur Meta</div></div>
+      <div class="tl-cell"><div class="tl-cell-ltr" style="color:var(--tl-b);">B</div><div class="tl-cell-desc">Spielbar — merklicher Abstand zu Meta-Picks</div></div>
+      <div class="tl-cell"><div class="tl-cell-ltr" style="color:var(--tl-c);">C</div><div class="tl-cell-desc">Nur in koordinierten Premade-Gruppen</div></div>
+    </div>
+
+    <!-- LEGEND -->
+    <div class="tl-legend">
+      <div class="tl-legend-title">Abzeichen-Erklärung</div>
+      <div class="tl-legend-item"><span class="tl-chip-badge badge-new">Neu</span> Neue Spec in Midnight</div>
+      <div class="tl-legend-item"><span class="tl-chip-badge badge-dh">Dark Horse</span> Hohes Ceiling, braucht Meisterschaft</div>
+      <div class="tl-legend-item"><span class="tl-chip-badge badge-phys">Phys</span> Stark in physisch-lastigen Gruppen</div>
+      <div class="tl-legend-item"><span class="tl-chip-badge badge-sup">Support</span> Buff-Spec — stärkt die Gruppe</div>
+      <div class="tl-legend-item"><span class="tl-chip-badge badge-unk">Unsicher</span> Meta noch nicht eindeutig</div>
+    </div>
+
+    <!-- ══════════ TANKS ══════════ -->
+    <div id="tl-tank" class="tl-panel active">
+      <div class="tl-intro ti-tank">
+        <div class="tl-stat">
+          <div class="tl-lbl">Bestes Tank</div>
+          <div class="tl-val" style="color:var(--rg-tank);">Brewmaster Mönch</div>
+          <div class="tl-note">Stagger wandelt Void-Burst in verwaltbare DoTs — perfekt für Midnight</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Mythic+ Empfehlung</div>
+          <div class="tl-val">Brewmaster / Prot Pala</div>
+          <div class="tl-note">Bis +15 beide top, danach Brewmaster führend</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Raid-Empfehlung</div>
+          <div class="tl-val">Brewmaster / Prot Paladin</div>
+          <div class="tl-note">Prot Pala punktet durch Cooldown-Bursts auf Boss-Phasen</div>
+        </div>
+      </div>
+
+      <div class="tl-block tb-s">
+        <div class="tl-lbl">S</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Brewmaster</span><span class="tl-chip-class">Mönch</span></div>
+        </div>
+      </div>
+      <div class="tl-block tb-ap">
+        <div class="tl-lbl">A+</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Protection</span><span class="tl-chip-class">Paladin</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Protection</span><span class="tl-chip-class">Krieger</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Vengeance</span><span class="tl-chip-class">Dämonenjäger</span></div>
+        </div>
+      </div>
+      <div class="tl-block tb-a">
+        <div class="tl-lbl">A</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Blood</span><span class="tl-chip-class">Todesritter</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Guardian</span><span class="tl-chip-class">Druide</span></div>
+        </div>
+      </div>
+      <div class="tl-notes">
+        <div class="tl-note">
+          <h4>Warum Brewmaster dominiert</h4>
+          <p>Midnight's Schadensprofil ist geprägt von schnell tickendem Magieschaden (Void Rupture, Concentrated Void Orbs). Stagger wandelt unvermeidbare Bursts in verwaltbare DoTs um. Das 2026er-Redesign fügte Basis-Magieresistenz hinzu — genau rechtzeitig für die Void-Expansion.</p>
+        </div>
+        <div class="tl-note">
+          <h4>Protection Paladin — warum A+ und nicht S</h4>
+          <p>Trotz starker Pre-Season-Erwartungen zeigen empirische Hochlevel-Daten, dass Paladins Cooldown-Profil nicht optimal mit Midnight's hoher Tick-Rate passt. Im Mythic-Raid jedoch punktet er durch präzise Cooldown-Bursts und ist dort gleichwertig.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ HEILER ══════════ -->
+    <div id="tl-heal" class="tl-panel">
+      <div class="tl-intro ti-heal">
+        <div class="tl-stat">
+          <div class="tl-lbl">Bester Heiler</div>
+          <div class="tl-val" style="color:var(--rg-heal);">Restoration Druide</div>
+          <div class="tl-note">HoT-Schichtung passt ideal zum Tick-Rate-schweren Schadensprofil</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Mythic+ Empfehlung</div>
+          <div class="tl-val">Resto Druid / Disziplin</div>
+          <div class="tl-note">Disco für Sequence-Enthusiasten — hohes Ceiling, hohes Risiko</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Meiden in M+</div>
+          <div class="tl-val" style="color:#f87171;">Resto Schamanin</div>
+          <div class="tl-note">Cooldowns durch März-Hotfix geschwächt — nur Raid-viable</div>
+        </div>
+      </div>
+
+      <div class="tl-block tb-s">
+        <div class="tl-lbl">S</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Restoration</span><span class="tl-chip-class">Druide</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Disziplin</span><span class="tl-chip-class">Priester</span><span class="tl-chip-badge badge-dh">Dark Horse</span></div>
+        </div>
+      </div>
+      <div class="tl-block tb-ap">
+        <div class="tl-lbl">A+</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Heilig</span><span class="tl-chip-class">Paladin</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Mistweaver</span><span class="tl-chip-class">Mönch</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Preservation</span><span class="tl-chip-class">Rufer</span></div>
+        </div>
+      </div>
+      <div class="tl-block tb-a">
+        <div class="tl-lbl">A</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Heilig</span><span class="tl-chip-class">Priester</span></div>
+        </div>
+      </div>
+      <div class="tl-block tb-b">
+        <div class="tl-lbl">B</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Restoration</span><span class="tl-chip-class">Schamanin</span></div>
+        </div>
+      </div>
+      <div class="tl-notes">
+        <div class="tl-note">
+          <h4>Warum Resto Druide führt</h4>
+          <p>HoT-Schichtung (Rejuvenation, Wild Growth, Lifebloom) erlaubt präventive Heilung zwischen den häufigen Schadensticks von Void-Encountern. Kein anderer Heiler kann so effizient Raid-weit vorheilend wirken ohne GCDs zu verschwenden.</p>
+        </div>
+        <div class="tl-note">
+          <h4>Disziplin Priester — Hochrisiko-Pick</h4>
+          <p>Disco ist in Midnight potentiell der stärkste Heiler im Raid — aber nur bei optimaler Ausführung. Die Sequence-basierte Spielweise hat kaum Fehlertoleranz. In M+ ist das Risikoprofil zu hoch für PUGs; für eingespieltes Teams ist es eine Belohnung.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════ DPS ══════════ -->
+    <div id="tl-dps" class="tl-panel">
+      <div class="tl-intro ti-dps">
+        <div class="tl-stat">
+          <div class="tl-lbl">Beste DPS</div>
+          <div class="tl-val" style="color:var(--rg-dps);">Augmentation Rufer</div>
+          <div class="tl-note">S-Tier Utility-DPS — Gruppenboosts definieren die Meta</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Raid Top-Pick</div>
+          <div class="tl-val">Demonologie Hexenm. / Balance Druide</div>
+          <div class="tl-note">Balance +20% Buff (März); Demo konstant stark seit Launch</div>
+        </div>
+        <div class="tl-stat">
+          <div class="tl-lbl">Balancestand</div>
+          <div class="tl-val" style="color:#68d391;">Sehr ausgewogen</div>
+          <div class="tl-note">~19 von 25 DPS-Specs innerhalb 5% voneinander im Raid</div>
+        </div>
+      </div>
+
+      <!-- S: Aug Evoker, Demo Lock, Balance Druid -->
+      <div class="tl-block tb-s">
+        <div class="tl-lbl">S</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Augmentation</span><span class="tl-chip-class">Rufer</span><span class="tl-chip-badge badge-sup">Support</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Dämonologie</span><span class="tl-chip-class">Hexenmeister</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Gleichgewicht</span><span class="tl-chip-class">Druide</span><span class="tl-chip-badge badge-new">+20% Buff</span></div>
+        </div>
+      </div>
+      <!-- A+: Arc Mage, Ele Sham, MM Hunter, Shadow Priest, Sub Rogue, Havoc DH, Surv Hunter -->
+      <div class="tl-block tb-ap">
+        <div class="tl-lbl">A+</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Arkan</span><span class="tl-chip-class">Magier</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Elementar</span><span class="tl-chip-class">Schamanin</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Treffsicher</span><span class="tl-chip-class">Jäger</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Schatten</span><span class="tl-chip-class">Priester</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Meucheln</span><span class="tl-chip-class">Schurke</span><span class="tl-chip-badge badge-dh">Dark Horse</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Verwüstung</span><span class="tl-chip-class">Dämonenjäger</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Überleben</span><span class="tl-chip-class">Jäger</span></div>
+        </div>
+      </div>
+      <!-- A: Arms Warrior, WW Monk, Frost Mage, Devourer DH -->
+      <div class="tl-block tb-a">
+        <div class="tl-lbl">A</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Waffen</span><span class="tl-chip-class">Krieger</span><span class="tl-chip-badge badge-phys">Phys</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Windläufer</span><span class="tl-chip-class">Mönch</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Frost</span><span class="tl-chip-class">Magier</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Verschlinger</span><span class="tl-chip-class">Dämonenjäger</span><span class="tl-chip-badge badge-new">Neu</span></div>
+        </div>
+      </div>
+      <!-- B: Affliction, BM Hunter, Fire Mage, Outlaw Rogue, Fury Warrior -->
+      <div class="tl-block tb-b">
+        <div class="tl-lbl">B</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Gebrechen</span><span class="tl-chip-class">Hexenmeister</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Tierherrschaft</span><span class="tl-chip-class">Jäger</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Feuer</span><span class="tl-chip-class">Magier</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Gesetzlosigkeit</span><span class="tl-chip-class">Schurke</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Furor</span><span class="tl-chip-class">Krieger</span><span class="tl-chip-badge badge-phys">Phys</span></div>
+        </div>
+      </div>
+      <!-- C: Frost DK, Unholy DK, Destruction Warlock -->
+      <div class="tl-block tb-c">
+        <div class="tl-lbl">C</div>
+        <div class="tl-chips">
+          <div class="tl-chip"><span class="tl-chip-name">Frost</span><span class="tl-chip-class">Todesritter</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Unheilig</span><span class="tl-chip-class">Todesritter</span></div>
+          <div class="tl-chip"><span class="tl-chip-name">Zerstörung</span><span class="tl-chip-class">Hexenmeister</span></div>
+        </div>
+      </div>
+
+      <div class="tl-notes">
+        <div class="tl-note">
+          <h4>Augmentation Rufer — S-Tier Utility</h4>
+          <p>Aug macht Augmentation nur ~20–28k persönlichen Schaden — aber das ist nicht der Punkt. Prescience, Ebon Might und Breath of Eons heben das gesamte Gruppen-DPS um 8–12%. In koordinierten Gruppen ist Aug schlicht unverzichtbar und daher S-Tier trotz Meter-Performance.</p>
+        </div>
+        <div class="tl-note">
+          <h4>Gleichgewichts-Druide — der März-Sprung</h4>
+          <p>Der 20%-Schadensbuff vom 30. März war der größte Einzel-Spec-Buff in Midnight bisher. Balance springt dadurch von solidem B-Tier direkt in S — ein ungewöhnlicher, aber klarer Fall von Patch-definierter Meta-Verschiebung. Erwartet eine Korrektur in Season 2.</p>
+        </div>
+      </div>
+    </div>
+
+    <p style="text-align:center;margin-top:1.5rem;font-size:.73rem;color:var(--rg-muted);">
+      Basiert auf Warcraft Logs Raid-Parses + Archon.gg M+ Rankings · Patch 12.0.5 „Lingering Shadows" · Stand: April 2026
+    </p>
+  </div>
+</section>
+
+<hr class="gr" />
+
+<!-- PATCH NOTES + SIDEBAR -->
+<section id="patch">
+  <div class="c">
+    <div class="sh">
+      <span class="stag">Offiziell · Blizzard Entertainment</span>
+      <h2 class="stitle">Patch Notes & Saison-Tools</h2>
+      <div class="dr"><div class="dl"></div><div class="dg"></div><div class="dl"></div></div>
+    </div>
+    <div class="lg">
+      <div class="pn">
+        <div class="ph"><div class="pt">Patch 12.0.5 – Lingering Shadows</div><div class="pv">21. April 2026 · LIVE</div></div>
+        <div class="pi"><div class="pi-ic">🌌</div><div class="pi-tx"><strong>Void Assaults</strong> – Neue World-Events in Eversong Woods & Zul'Aman. Wöchentliche Rotation: Void Strike und Void Incursion. Belohnungen: Field Accolades → Housing-Decor, Pets, Mounts und Tier-2-Remaster-Recolor. <span class="pb2 pb-new">NEU</span></div></div>
+        <div class="pi"><div class="pi-ic">🏛</div><div class="pi-tx"><strong>Ritual Sites</strong> – Skalierbarer 1–5 Spieler Content mit Tier-Progression. Scalable Challenges und attraktive Cosmetics. <span class="pb2 pb-new">NEU</span></div></div>
+        <div class="pi"><div class="pi-ic">⚒</div><div class="pi-tx"><strong>Voidforge</strong> – 2 wöchentliche Nebulous Voidcore-Tokens (Gold/Veteran Dawncrests). Waffen & Trinkets über Mythic-Cap via Ascendant Nilhammer upgraden. <span class="pb2 pb-new">NEU</span></div></div>
+        <div class="pi"><div class="pi-ic">🎮</div><div class="pi-tx"><strong>Decor Duels</strong> – Housing Prop-Hunt-Modus in Silvermoon City. Community-Event zum Gegenständeverstecken. <span class="pb2 pb-new">NEU</span></div></div>
+        <div class="pi"><div class="pi-ic">🏆</div><div class="pi-tx"><strong>Keystone Myth Achievement</strong> – 3.400 M+ Rating in Saison 1 → Timelost Saddle Mount-Exchange. <span class="pb2 pb-new">NEU</span></div></div>
+        <div class="pi"><div class="pi-ic">🌿</div><div class="pi-tx"><strong>Balance Druid</strong> – +20% Gesamtschaden (30. März-Pass). Springt von B auf S-Tier. Größter Einzel-Buff in Midnight. <span class="pb2 pb-b">BUFF</span></div></div>
+        <div class="pi"><div class="pi-ic">🐻</div><div class="pi-tx"><strong>Brewmaster Monk</strong> – Magic-Mitigation baseline. Perfekt gegen Void-Schaden. Unumstrittener S-Tank in Midnight. <span class="pb2 pb-b">BUFF</span></div></div>
+        <div class="pi"><div class="pi-ic">🌊</div><div class="pi-tx"><strong>Restoration Shaman</strong> – M+ Cooldowns weiterhin geschwächt nach März-Hotfix. Nur teilweise Erholung im April. <span class="pb2 pb-n">NERF</span></div></div>
+      </div>
+      <div class="sb">
+        <div class="wi cdw">
+          <div class="wt" style="text-align:center;">⏱ Season 1 endet in</div>
+          <div class="cde">MIDNIGHT SEASON 1</div><div class="cds">4.–5. Mai 2026</div>
+          <div class="cdb">
+            <div class="cb"><span class="cn" id="cd-d">--</span><span class="cl">Tage</span></div>
+            <div class="cb"><span class="cn" id="cd-h">--</span><span class="cl">Std</span></div>
+            <div class="cb"><span class="cn" id="cd-m">--</span><span class="cl">Min</span></div>
+            <div class="cb"><span class="cn" id="cd-s">--</span><span class="cl">Sek</span></div>
+          </div>
+        </div>
+        <div class="wi">
+          <div class="wt">🏆 Mythic Race – Alleria</div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#ffd700;"></div>Echo (EU-Tarren Mill)</div><div class="wr-r r1">CE ✓</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#c0c0c0;"></div>Liquid (US-Area 52)</div><div class="wr-r r2">CE ✓</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#c87040;"></div>Method (EU-Silvermoon)</div><div class="wr-r r3">10/10M</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#555;"></div>Skyline (EU-Kazzak)</div><div class="wr-r r4">9/10M</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#555;"></div>Complexity (US)</div><div class="wr-r r4">9/10M</div></div>
+        </div>
+        <div class="wi">
+          <div class="wt">🗺 M+ Diese Woche</div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:var(--arc-g);"></div>Woche</div><div class="wr-r" style="color:var(--arc-g);">Fortified</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:#ff8090;"></div>Affix 2</div><div class="wr-r" style="color:#ff8090;">Bursting</div></div>
+          <div class="wri"><div class="wr-l"><div class="wd" style="background:var(--gold);"></div>Saisonal</div><div class="wr-r" style="color:var(--gold);">Void-Rift</div></div>
+          <div style="margin-top:.85rem;font-size:.75rem;color:var(--txm);line-height:1.6;">Bestes Comp aktuell:<br><strong style="color:var(--tx);">BM Monk + Resto Druid + Aug Evo</strong></div>
+        </div>
+        <div class="wi">
+          <div class="wt">🔗 Ressourcen</div>
+          <div class="wri"><div class="wr-l">📰 Wowhead</div><div class="wr-r"><a href="https://www.wowhead.com" target="_blank" style="color:var(--arc-g);font-size:.75rem;text-decoration:none;">wowhead.com →</a></div></div>
+          <div class="wri"><div class="wr-l">📊 IcyVeins</div><div class="wr-r"><a href="https://www.icy-veins.com/wow" target="_blank" style="color:var(--arc-g);font-size:.75rem;text-decoration:none;">icy-veins.com →</a></div></div>
+          <div class="wri"><div class="wr-l">📈 Archon.gg</div><div class="wr-r"><a href="https://archon.gg" target="_blank" style="color:var(--arc-g);font-size:.75rem;text-decoration:none;">archon.gg →</a></div></div>
+          <div class="wri"><div class="wr-l">📋 Blizzard</div><div class="wr-r"><a href="https://news.blizzard.com/en-us/world-of-warcraft" target="_blank" style="color:var(--arc-g);font-size:.75rem;text-decoration:none;">blizzard.com →</a></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="c">
+    <div class="fi">
+      <div>
+        <div style="display:flex;align-items:center;gap:.7rem;margin-bottom:.6rem;">
+          <div class="lhex" style="width:30px;height:30px;font-size:.8rem;">⚔</div>
+          <span class="lname" style="font-size:1rem;">Azeroth Chronicle</span>
+        </div>
+        <p class="fd">Inoffizielle Fanseite. Nicht verbunden mit Blizzard Entertainment. WoW™ ist ein Markenzeichen von Blizzard. News via Claude API + Web Search.</p>
+      </div>
+      <div class="fc">
+        <div class="fcol"><h4>Guides</h4><ul><li><a href="#">Boss Guides</a></li><li><a href="#">Klassen</a></li><li><a href="#">Mythic+</a></li><li><a href="#">Leveling</a></li></ul></div>
+        <div class="fcol"><h4>News</h4><ul><li><a href="#">Patch Notes</a></li><li><a href="#">PTR</a></li><li><a href="#">Events</a></li><li><a href="#">Datamining</a></li></ul></div>
+        <div class="fcol"><h4>Community</h4><ul><li><a href="#">Discord</a></li><li><a href="#">Twitch</a></li><li><a href="#">YouTube</a></li><li><a href="#">Kontakt</a></li></ul></div>
+      </div>
+    </div>
+    <div class="fb">© 2026 Azeroth Chronicle · Powered by Claude API + Web Search · Alle Rechte vorbehalten</div>
+  </div>
+</footer>
+
+<!-- BOSS MODAL -->
+<div class="mbg" id="mbg" onclick="closeMod(event)">
+  <div class="mod">
+    <div class="mt"><div class="mbn" id="mod-title">Boss Guide</div><button class="mcl" onclick="closeMod()">✕</button></div>
+    <div class="mb" id="mod-body"><div class="ml"><div class="spin"></div>KI generiert Guide via Web Search…</div></div>
+  </div>
+</div>
+
+<script>
+// ── STARS ──
+const bg=document.getElementById('bg');
+for(let i=0;i<160;i++){
+  const s=document.createElement('div');s.className='star';
+  const z=Math.random()*2.2+.4;
+  s.style.cssText=`width:${z}px;height:${z}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${(Math.random()*5+2.5).toFixed(1)}s;--dl:${(Math.random()*7).toFixed(1)}s;--op:${(Math.random()*.65+.15).toFixed(2)};`;
+  bg.appendChild(s);
+}
+
+// ── TIER DATA (April 2026 post-12.0.5) ──
+const T={
+  dps:{
+    s:[{n:'Augmentation Evoker',c:'#33937f'},{n:'Demonology Warlock',c:'#8788ee'},{n:'Balance Druid (+20%)',c:'#ff7c0a'}],
+    a:[{n:'Arcane Mage',c:'#69ccf0'},{n:'Elemental Shaman',c:'#0070dd'},{n:'Marksmanship Hunter',c:'#aad372'},{n:'Shadow Priest',c:'#ffffff'},{n:'Subtlety Rogue',c:'#fff468'},{n:'Havoc DH',c:'#a330c9'}],
+    b:[{n:'Arms Warrior',c:'#c79c6e'},{n:'Windwalker Monk',c:'#00ff96'},{n:'Frost Mage',c:'#69ccf0'},{n:'Survival Hunter',c:'#aad372'},{n:'Devourer DH (NEU)',c:'#7030a0'}],
+    c:[{n:'Affliction Warlock',c:'#8788ee'},{n:'Beast Mastery Hunter',c:'#aad372'},{n:'Fire Mage',c:'#69ccf0'},{n:'Frost DK',c:'#c41e3a'}],
+    d:[{n:'Outlaw Rogue',c:'#fff468'},{n:'Unholy DK',c:'#c41e3a'}]
+  },
+  heal:{
+    s:[{n:'Restoration Druid',c:'#ff7c0a'},{n:'Discipline Priest',c:'#ffffff'}],
+    a:[{n:'Mistweaver Monk',c:'#00ff96'},{n:'Holy Paladin',c:'#f48cba'},{n:'Preservation Evoker',c:'#33937f'}],
+    b:[{n:'Holy Priest',c:'#ffffff'}],
+    c:[{n:'Restoration Shaman (M+ schwach)',c:'#0070dd'}],
+    d:[]
+  },
+  tank:{
+    s:[{n:'Brewmaster Monk',c:'#00ff96'}],
+    a:[{n:'Protection Paladin (A+)',c:'#f48cba'},{n:'Vengeance DH',c:'#a330c9'}],
+    b:[{n:'Blood DK',c:'#c41e3a'},{n:'Guardian Druid',c:'#ff7c0a'}],
+    c:[{n:'Protection Warrior',c:'#c79c6e'}],
+    d:[]
+  }
+};
+// ── TIER LIST TABS ──
+function tlTab(role, btn){
+  document.querySelectorAll('.tl-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tl-tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tl-'+role).classList.add('active');
+  btn.classList.add('active');
+}
+
+function setTier(t){
+  ['dps','heal','tank'].forEach(x=>document.getElementById('btn-'+x).className=x===t?'btn-p':'btn-g');
+  ['s','a','b','c','d'].forEach(r=>{
+    const el=document.getElementById('tr-'+r);
+    const d=T[t][r];
+    el.innerHTML=d.length?d.map(c=>`<div class="ch" style="--cc:${c.c}"><div class="cd"></div>${c.n}</div>`).join('')
+      :'<span style="font-size:.76rem;color:var(--txm);padding:.3rem 0;">—</span>';
+  });
+}
+setTier('dps');
+
+// ── COUNTDOWN ──
+const END=new Date('2026-05-05T15:00:00Z');
+function upCD(){
+  const d=Math.max(0,END-Date.now());
+  const dd=Math.floor(d/86400000),hh=Math.floor((d%86400000)/3600000);
+  const mm=Math.floor((d%3600000)/60000),ss=Math.floor((d%60000)/1000);
+  document.getElementById('cd-d').textContent=String(dd).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(hh).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(mm).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(ss).padStart(2,'0');
+}
+setInterval(upCD,1000);upCD();
+
+// ── CLAUDE API ──
+async function claude(messages,system,search=false){
+  const body={model:'claude-sonnet-4-20250514',max_tokens:1000,system,messages};
+  if(search) body.tools=[{type:'web_search_20250305',name:'web_search'}];
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok) throw new Error('API '+r.status);
+  const data=await r.json();
+  return data.content.map(b=>b.type==='text'?b.text:'').filter(Boolean).join('\n');
+}
+
+// ── LIVE NEWS ──
+const CARD_COLORS=['linear-gradient(135deg,#120026,#200040)','linear-gradient(135deg,#0a1a30,#0a2a50)','linear-gradient(135deg,#1a0a0a,#3a1010)','linear-gradient(135deg,#001a10,#002820)','linear-gradient(135deg,#1a1000,#2a1a00)'];
+const TAG_COLORS=['var(--arc)','var(--gold-d)','var(--cr)','#1a5a30','#3a2500'];
+
+async function loadNews(){
+  const btn=document.getElementById('ai-ref'),status=document.getElementById('ai-status');
+  btn.disabled=true;
+  status.innerHTML='<span class="lr"></span>Durchsuche das Web nach aktuellen WoW Midnight News…';
+  showSkeleton();
+  try{
+    const raw=await claude(
+      [{role:'user',content:'Suche nach den 5 neuesten World of Warcraft Midnight News von April/Mai 2026. Gib NUR ein JSON-Objekt zurück mit "articles": Array von {title (deutsch, max 80 Zeichen), summary (deutsch, 2-3 Sätze präzise), category (Patch/Raid/Klassen/M+/PvP/Event/Meta/Housing), date (z.B. "22. April 2026"), emoji}. Kein Markdown, keine Backticks, nur reines JSON.'}],
+      'Du bist WoW-Nachrichtenredakteur. Nutze Web Search. Antworte NUR mit reinem JSON-Objekt, kein Markdown, kein erklärender Text.',
+      true
+    );
+    let arts;
+    try{const c=raw.replace(/```json|```/g,'').trim();arts=JSON.parse(c).articles||JSON.parse(c);}
+    catch{throw new Error('parse');}
+    if(!Array.isArray(arts)||!arts.length) throw new Error('empty');
+    renderNews(arts);
+    status.textContent=`✓ ${arts.length} aktuelle News geladen · ${new Date().toLocaleTimeString('de-DE')} Uhr`;
+    btn.disabled=false;
+  }catch(e){
+    status.textContent='⚠ Web-Fehler – zeige kuratierte News';
+    btn.disabled=false;
+    renderNews(STATIC_NEWS);
+  }
+}
+
+function showSkeleton(){
+  document.getElementById('news-grid').innerHTML=`
+    <div class="nf" style="grid-column:1/-1;background:var(--s2);border:1px solid var(--bd);border-radius:6px;min-height:240px;">
+      <div style="padding:2rem;display:flex;flex-direction:column;gap:.9rem;width:100%;grid-column:1/-1;">
+        <div class="sk" style="height:13px;width:25%;"></div><div class="sk" style="height:26px;width:75%;"></div>
+        <div class="sk" style="height:13px;width:90%;"></div><div class="sk" style="height:13px;width:65%;"></div>
+      </div>
+    </div>
+    <div class="nc" style="background:var(--s2);border:1px solid var(--bd);border-radius:6px;"><div style="min-height:140px;background:var(--s3);"></div><div style="padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;"><div class="sk" style="height:11px;width:40%;"></div><div class="sk" style="height:17px;width:88%;"></div></div></div>
+    <div class="nc" style="background:var(--s2);border:1px solid var(--bd);border-radius:6px;"><div style="min-height:140px;background:var(--s3);"></div><div style="padding:1.2rem;display:flex;flex-direction:column;gap:.7rem;"><div class="sk" style="height:11px;width:40%;"></div><div class="sk" style="height:17px;width:88%;"></div></div></div>`;
+}
+
+function renderNews(arts){
+  const f=arts[0],rest=arts.slice(1,5);
+  let html=`<article class="nf"><div class="ni" style="background:${CARD_COLORS[0]};"><div class="ni-in">${f.emoji||'🌙'}</div><div class="ni-ov"></div><span class="ni-tag">TITELSTORY</span></div><div class="nb"><div class="nm"><span class="ndt">${f.date||'April 2026'}</span><span class="nct">${f.category||'News'}</span></div><h3 class="ntl">${f.title}</h3><p class="nex">${f.summary}</p><a href="#" class="nl">Weiterlesen</a></div></article>`;
+  rest.forEach((a,i)=>{html+=`<article class="nc"><div class="ni" style="min-height:145px;background:${CARD_COLORS[(i+1)%CARD_COLORS.length]};"><div class="ni-in" style="font-size:3rem;">${a.emoji||'⚔'}</div><span class="ni-tag" style="background:${TAG_COLORS[(i+1)%TAG_COLORS.length]};">${a.category||'News'}</span></div><div class="nb"><div class="nm"><span class="ndt">${a.date||'April 2026'}</span><span class="nct">${a.category||'News'}</span></div><h3 class="ntl">${a.title}</h3><p class="nex">${a.summary}</p><a href="#" class="nl">Weiterlesen</a></div></article>`;});
+  document.getElementById('news-grid').innerHTML=html;
+}
+
+const STATIC_NEWS=[
+  {title:'Patch 12.0.5 „Lingering Shadows" jetzt live – alle Features im Überblick',summary:'Das erste große Content-Update bringt Void Assaults, Voidforge, Ritual Sites und Decor Duels. Balance Druid wurde massiv gebufft (+20%), Brewmaster Monk erhält baseline Magic Mitigation.',category:'Patch',date:'21. April 2026',emoji:'🌌'},
+  {title:'Saison 1 endet 4./5. Mai – jetzt noch Cutting Edge sichern',summary:'Weniger als zwei Wochen bis zum Saisonende. Alleria Windrunner Mythic ist noch offen. Das neue Keystone Myth Achievement erfordert 3.400 Rating.',category:'Raid',date:'22. April 2026',emoji:'⚔'},
+  {title:'Voidspire Hall of Fame: Echo und Liquid haben CE – Rennen geht weiter',summary:'Echo EU und Liquid US haben Cutting Edge für The Voidspire und Dreamrift bereits gesichert. Method und Skyline progressen noch auf Alleria Mythic.',category:'Meta',date:'20. April 2026',emoji:'🏆'},
+  {title:'M+ Season 1: Fortified/Bursting diese Woche – Meta-Analyse',summary:'Diese Woche Fortified + Bursting + Void-Rift. Bestes Comp: Brewmaster Tank, Restoration Druid, Augmentation Evoker. Aug bleibt trotz nerfs S-Tier Utility.',category:'M+',date:'22. April 2026',emoji:'🗺'}
+];
+
+// ── ASK AI ──
+function setQ(q){document.getElementById('ai-in').value=q;askAI();}
+async function askAI(){
+  const inp=document.getElementById('ai-in'),ans=document.getElementById('ai-ans'),btn=document.getElementById('ai-sb');
+  const q=inp.value.trim();if(!q)return;
+  btn.disabled=true;ans.className='vis';
+  ans.innerHTML='<span class="lr"></span>KI sucht und analysiert aktuelle Infos…';
+  try{
+    const t=await claude([{role:'user',content:q}],
+      `Du bist WoW-Guide-Experte für deutsche Spieler. WoW Midnight läuft seit März 2026. Aktuelle Infos: Patch 12.0.5 "Lingering Shadows" live seit 21.4.2026 (Void Assaults, Ritual Sites, Voidforge, Decor Duels). Raids: The Voidspire (6 Bosse: Imperator Averzian, Vorasius, Fallen-King Salhadaar, Vaelgor&Ezzorak, Lightblinded Vanguard, Crown of the Cosmos/Xal'atath), The Dreamrift (Chimaerus, Belo'ren), March on Quel'Danas (L'ura, Midnight Falls, Alleria Windrunner). S-Tier Tank: Brewmaster Monk. S-Tier Heal: Resto Druid & Disc Priest. S-Tier DPS: Aug Evoker, Demo Warlock, Balance Druid (+20%). Saison 1 endet 4./5. Mai 2026. Level-Cap: 90. 4 Zonen: Eversong Woods, Zul'Aman, Harandar, Voidstorm. Neuer Spec: Devourer DH. Antworte auf Deutsch, präzise.`,
+      true
+    );
+    ans.textContent=t;
+  }catch(e){ans.textContent='⚠ Fehler: '+e.message;}
+  btn.disabled=false;
+}
+document.getElementById('ai-in').addEventListener('keydown',e=>{if(e.key==='Enter')askAI();});
+
+// ── BOSS MODAL ──
+function openBoss(name,meta){
+  document.getElementById('mod-title').textContent=name;
+  document.getElementById('mod-body').innerHTML='<div class="ml"><div class="spin"></div>KI generiert Guide via Web Search…</div>';
+  document.getElementById('mbg').classList.add('open');
+  claude([{role:'user',content:`Schreibe einen vollständigen deutschen Boss-Guide für "${name}" (${meta}) in WoW Midnight Season 1. Struktur: ## Überblick, ## Schlüsselmechaniken, ## Strategie nach Rolle (Tank/Heiler/DPS), ## Mythic-Besonderheiten, ## Pro-Tipp. Nutze bullet points. Konkret und hilfreich.`}],
+    'WoW-Guide-Experte. Nutze Web Search für aktuelle Daten. Antworte auf Deutsch mit strukturiertem Guide.',true)
+  .then(t=>{
+    const html=t.replace(/^## (.+)$/gm,'<h3>$1</h3>').replace(/^- (.+)$/gm,'<li>$1</li>').replace(/^\* (.+)$/gm,'<li>$1</li>').replace(/\*\*(.+?)\*\*/g,'<strong style="color:var(--tx)">$1</strong>').replace(/(<li>[\s\S]+?<\/li>)/g,'<ul>$1</ul>').split('\n').map(l=>l.startsWith('<')?l:`<p>${l}</p>`).join('');
+    document.getElementById('mod-body').innerHTML=`<div class="gs">${html}</div>`;
+  }).catch(e=>{document.getElementById('mod-body').innerHTML=`<div style="padding:1.5rem;color:var(--txm);">⚠ ${e.message}</div>`;});
+}
+function closeMod(e){if(!e||e.target===document.getElementById('mbg'))document.getElementById('mbg').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMod();});
+
+// ── INIT ──
+loadNews();
+</script>
+</body>
+</html>
