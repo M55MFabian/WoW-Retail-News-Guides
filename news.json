@@ -1,0 +1,13 @@
+{
+  "updated": "Noch nicht aktualisiert",
+  "articles": [
+    {
+      "title": "Die KI aktualisiert diese News täglich automatisch",
+      "summary": "Sobald der erste GitHub Action-Lauf abgeschlossen ist, werden hier echte WoW Midnight News angezeigt.",
+      "category": "Info",
+      "date": "Startet bald",
+      "emoji": "🌙",
+      "source": "Azeroth Chronicle"
+    }
+  ]
+}
